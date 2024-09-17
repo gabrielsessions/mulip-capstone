@@ -7,6 +7,7 @@ Team Members:
 - Jesus Naranjo
 - Jonathan Guzman
 - Nickolas Boylan
+- Prithvi Shahani
 - Timi Kola-Abiola
 
 Sponsored By: 
