@@ -5,7 +5,6 @@ import { Fragment, useState } from 'react'
 import { LOCALSTORAGE } from './WebSocketLog'
 
 export default function SettingsPopup(props) {
-  console.log(props.settings)
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -69,9 +68,9 @@ export default function SettingsPopup(props) {
                     {
                       props.settings ?
                         <div className='space-y-1'>
-                          {Object.keys(props.settings).map((field) => {
+                          {Object.keys(props.settings).map((field, index) => {
                             return (
-                              <>
+                              <div key={index}>
 
                                 <label>{field}: </label>
                                 <input
@@ -90,7 +89,7 @@ export default function SettingsPopup(props) {
                                   }}
                                 />
                                 <br />
-                              </>
+                              </div>
                             );
 
 

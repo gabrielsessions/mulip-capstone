@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Example</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>WebSocket Example</h1>
+    <input id="messageInput" type="text" placeholder="Type a message">
+    <button id="sendMessage">Send</button>
+    <div id="responses"></div>
+
+    <script>
+        const socket = io();
+        console.log(socket);
+
+        document.getElementById('sendMessage').onclick = function() {
+            const message = document.getElementById('messageInput').value;
+            socket.emit('message', message);
+        };
+
+        socket.on('response', function(msg) {
+            const responsesDiv = document.getElementById('responses');
+            responsesDiv.innerHTML += '<p>' + msg + '</p>';
+        });
+    </script>
+</body>
+</html>

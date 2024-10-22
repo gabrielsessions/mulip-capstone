@@ -1,12 +1,10 @@
-import { useState } from 'react'
-import Login from './components/Login';
+import { useEffect, useState } from 'react'
 import WebSocketLog from './components/WebSocketLog';
-
+import { io } from 'socket.io-client';
 
 function App() {
 
   const [WS, setWS] = useState(null);
-  const [clientID, setClientID] = useState("");
   const [messages, setMessages] = useState([]);
   const [popup, setPopup] = useState({
     visible: false,
@@ -26,32 +24,41 @@ function App() {
     }, 3000);
   }
 
-  const initialConnect = (clientID) => {
-    if (!clientID) {
-      return;
-    }
-    const socket = new WebSocket('ws://34.173.203.110');
-    socket.addEventListener("open", () => {
-      console.log("Client Open!");
-      socket.send("WebClient_" + clientID);
-      setWS(socket);
-      socket.send("Hello!");
-    });
-    socket.addEventListener("close", () => {
-      console.log("Socket Closed!");
-      setWS(null);
-      showAlert("Socket connection closed. If this was not intentional, please reconnect!")
-    })
-    socket.addEventListener("message", (message) => {
-      console.log(message);
-      setMessages((prev) => [...prev, message.data]);
-    })
 
-  }
+  useEffect(() => {
+    const initialConnect = () => {
+      console.log("Socket connection attempted:");
 
+      // Establish the Socket.IO connection
+      const socket = io('http://127.0.0.1:5000', {
+        transports: ['websocket'],
+      });
 
-  // Fetch localstorage stuff
-  
+      socket.on("connect", () => {
+        console.log("Connected to server!");
+        setWS(socket); // Save the socket to state after a successful connection
+        socket.emit("message", "Hello!"); // Emit a message to the server
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from server!");
+        setWS(null);
+        showAlert("Socket connection closed. Please reload the page to reconnect!");
+      });
+
+      socket.on("response", (message) => {
+        console.log("Received from server:", message);
+        setMessages((prev) => [...prev, message]);
+      });
+
+      socket.on("error", (err) => {
+        console.error("Socket error:", err);
+      });
+    };
+
+    initialConnect();
+  }, []);
+
 
   return (
     <>
@@ -68,17 +75,11 @@ function App() {
           }
         </div>
 
-        {
-          WS ?
-            <>
-              <WebSocketLog clientID={clientID} log={messages} sendMessage={(message) => WS.send(message)} disconnect={() => {
-                WS.close();
-              }} />
-            </> :
-            <Login onSubmit={initialConnect} clientID={clientID} setClientID={setClientID} />
+        <WebSocketLog connected={WS !== undefined && WS !== null} log={messages} sendMessage={(message) => WS.send(message)} disconnect={() => {
+          WS.close();
+        }} />
 
 
-        }
 
       </div>
 

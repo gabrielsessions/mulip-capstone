@@ -40,7 +40,6 @@ export default function WebSocketLog(props) {
 
 
   useEffect(() => {
-    //console.log(props.messages.length)
     messagesRef.current.scroll({ top: messagesRef.current.scrollHeight, behavior: 'smooth' });
     console.log(props.log.length)
   }, [props, props.log])
@@ -61,11 +60,9 @@ export default function WebSocketLog(props) {
 
   return (
     <>
-
-
       <div className="bg-white shadow-lg rounded-lg p-8 m-4 w-full max-w-5xl block">
 
-        <h2 className="font-bold text-2xl mb-4">Currently Connected as <span className="italic text-blue-500">WebClient_{props.clientID}</span></h2>
+        <h2 className="font-bold text-2xl mb-4"> Simple Frontend Interface ({props.connected ? "Connected" : "Not Connected"})</h2>
         <div className="absolute right-2 top-2">
           <SettingsPopup settings={settings} setSettings={setSettings} resetSettings={resetSettings} />
         </div>
@@ -110,16 +107,12 @@ export default function WebSocketLog(props) {
 
             </div>
 
-            <button className="md:inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-semibold tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-red-500 hover:bg-red-600 focus:bg-red-700 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300 disabled:shadow-none mb-4 mx-4" onClick={props.disconnect}>
-              <span>Disconnect From Server</span>
-            </button>
           </div>
 
         </div>
         <div className="flex justify-center p-4">
 
         </div>
-
 
       </div>
     </>
