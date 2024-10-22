@@ -17,3 +17,10 @@ Framework: Flask (Python)
   - `pip install -r requirements.txt`
 6. Run a dev instance of the server
   - `flask run`
+
+
+## Run via Docker Container
+```bash
+docker pull gabrielsessions/mulip-flask-server
+docker run -it -p 5000:5000 gabrielsessions/mulip-flask-server # runs on http://localhost:5000
+```
