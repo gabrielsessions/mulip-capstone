@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AR with A-Frame</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-xr@1.4.0/dist/aframe-xr.min.js"></script>
+    <style>
+        .a-enter-vr-button {
+            top: 10px;
+            right: 10px; 
+            position: absolute;
+            z-index: 9999; 
+        }
+    </style>
+    <script>
+      AFRAME.registerComponent('color-change-on-click', {
+          init: function () {
+              var el = this.el;
+              el.addEventListener('click', function () {
+                  el.setAttribute('color', '#EF2D5E');
+              });
+          }
+      });
+  </script>
+  </head>
+  <body>
+    <body>
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+          <a-box position="0 0.5 -3" rotation="0 45 0" color="#4CC3D9" color-change-on-click></a-box>
+          <a-sphere position="1 1 -2" radius="0.5" color="#EF2D5E"></a-sphere>
+          <a-cylinder position="-1 0.75 -3" radius="0.3" height="1.5" color="#FFC65D"></a-cylinder>
+          <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        </a-scene>
+      </body>
+  </body>
+</html>
