@@ -2,8 +2,7 @@ import jwt
 import uuid
 import datetime
 import qrcode
-from flask import Flask, request, jsonify, send_file, render_template, redirect
-from cryptography.fernet import Fernet
+from flask import Flask, request, jsonify, send_file, render_template
 from io import BytesIO
 
 app = Flask(__name__)
@@ -15,12 +14,9 @@ with open("private_key.pem", "r") as f:
 with open("public_key.pem", "r") as f:
     PUBLIC_KEY = f.read()
 
-# In-memory store for UUID-to-JWT mapping
-session_store = {}
-
 def create_jwt(user_id):
     """
-    Generates a JWT with a 1-hour expiration and unique session ID.
+    Generates a JWT with a 1-hour expiration.
     """
     expiration_time = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
     payload = {
@@ -41,19 +37,11 @@ def index():
 
 @app.route("/generate_qr", methods=["POST"])
 def generate_qr():
-    data = request.json
-    user_id = data.get("user_id")
-    
-    if not user_id:
-        return jsonify({"error": "User ID required"}), 400
-    
-    # Generate a JWT and store it with a UUID
-    token = create_jwt(user_id)
-    session_id = str(uuid.uuid4())
-    session_store[session_id] = token  # Store JWT associated with UUID
-    
-    # Generate a URL that points to the landing page with the UUID
-    landing_url = f"http://127.0.0.1:5000/landing?session_id={session_id}"
+    """
+    Generates a QR code with a URL pointing to the landing page.
+    """
+    # URL for the landing page (no session ID, no data stored on the server)
+    landing_url = f"http://127.0.0.1:5000/landing"
     
     # Generate QR code with the URL
     qr = qrcode.QRCode(
@@ -72,28 +60,16 @@ def generate_qr():
     
     return send_file(img_io, mimetype="image/png")
 
-
 @app.route("/landing")
 def landing():
-    session_id = request.args.get("session_id")
+    """
+    Generates a JWT for the user upon loading the landing page and embeds it in the template.
+    """
+    user_id = "user123"  # Example user ID; this could be dynamic based on login info or other data
+    token = create_jwt(user_id)
     
-    if session_id not in session_store:
-        return "Invalid or expired session ID", 400
-    
-    # Retrieve the JWT from session_store
-    token = session_store.get(session_id)
-    
-    try:
-        # Verify JWT
-        payload = jwt.decode(token, PUBLIC_KEY, algorithms=["RS256"])
-        user_id = payload["sub"]
-        return render_template("landing.html", user_id=user_id)
-    except jwt.ExpiredSignatureError:
-        return "Session expired! Please generate a new QR code.", 401
-    except jwt.InvalidTokenError:
-        return "Invalid token!", 400
-
-
+    # Pass the JWT to the template
+    return render_template("landing.html", jwt_token=token)
 
 if __name__ == "__main__":
     app.run(debug=True)
