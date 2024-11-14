@@ -2,7 +2,7 @@ import jwt
 import uuid
 import datetime
 import qrcode
-from flask import Flask, request, jsonify, send_file, render_template
+from flask import Flask, request, jsonify, send_file, render_template, url_for
 from io import BytesIO
 
 app = Flask(__name__)
@@ -13,6 +13,9 @@ with open("private_key.pem", "r") as f:
 
 with open("public_key.pem", "r") as f:
     PUBLIC_KEY = f.read()
+
+# Global counter to iterate through user IDs (resets when server restarts)
+user_counter = 1
 
 def create_jwt(user_id):
     """
@@ -40,8 +43,8 @@ def generate_qr():
     """
     Generates a QR code with a URL pointing to the landing page.
     """
-    # URL for the landing page (no session ID, no data stored on the server)
-    landing_url = f"http://127.0.0.1:5000/landing"
+    # URL for the landing page (generated dynamically)
+    landing_url = url_for("landing", _external=True)
     
     # Generate QR code with the URL
     qr = qrcode.QRCode(
@@ -65,11 +68,16 @@ def landing():
     """
     Generates a JWT for the user upon loading the landing page and embeds it in the template.
     """
-    user_id = "user123"  # Example user ID; this could be dynamic based on login info or other data
+    global user_counter  # Access the global counter
+    user_id = f"user{user_counter}"  # Generate a dynamic user_id based on the counter
+    user_counter += 1  # Increment the counter for the next user
+
+    # Generate a JWT with the dynamic user_id
     token = create_jwt(user_id)
     
-    # Pass the JWT to the template
-    return render_template("landing.html", jwt_token=token)
+    # Pass the JWT and user_id to the template
+    return render_template("landing.html", jwt_token=token, user_id=user_id)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
