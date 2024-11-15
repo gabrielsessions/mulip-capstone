@@ -26,6 +26,6 @@ def send_global_score():
     print("Connection!")
     emit('response', cookieClickerScore)
 
-port_number = os.environ["PORT"] if "PORT" in os.environ else 8080
+port_number = 8080
 if __name__ == '__main__':
     socketio.run(app, port=port_number)
