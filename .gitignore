@@ -1,3 +1,6 @@
 flask-venv
 __pycache__
 private_key.pem
+tensorflow-test-react
+.env
+s
