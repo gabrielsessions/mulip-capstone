@@ -1,8 +1,10 @@
-import { io } from "https://cdn.socket.io/4.8.0/socket.io.esm.min.js";
+import { io } from "./socket.io.esm.min.js"
 
 let localCookieCount = 0;
 let globalCookieCount = 0;
 const socket = io(); // Declare socket globally
+
+const commands = ["f_fwd","s_fwd","f_bwd", "s_bwd", "f_lft", "s_lft", "f_rht", "s_rht", "stop"]
 
 function cookieClicked() {
   localCookieCount++;
@@ -26,7 +28,7 @@ function cookieClicked() {
 
   document.getElementById("cookie").setAttribute("position", newCoords);
 
-  socket.send("click"); // Update global score
+  socket.send(commands[Math.floor(Math.random() * commands.length)]); // Update global score
 }
 
 function globalScoreUpdate(newVal) {
