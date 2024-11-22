@@ -2,6 +2,10 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '/cozmo_ros2_ws/src/cozmo_ros2_nosdk/cozmo_ros2_nosdk/')))
+
 from teleop_twist_web_prime import TeleopTwistWeb
 
 app = Flask(__name__, template_folder='templates', static_folder='static')

@@ -5,7 +5,7 @@ from geometry_msgs.msg import Twist
 class TeleopTwistWeb:
     def __init__(self):
         rclpy.init()
-        self.node = rclpy.create_node('teleop_twist_web')
+        self.node = rclpy.create_node(node_name='teleop_twist_web', namespace='cozmo')
         self.pub = self.node.create_publisher(Twist, 'cmd_vel', 1)
         self.movement_speed = 0.2
         self.head_speed = 2.0
@@ -31,8 +31,10 @@ class TeleopTwistWeb:
     def send_command(self, command):
         # Check if command is in moveBindings
         if command in self.moveBindings:
+            print(command, "in moveBindings")
             self.x, self.y, self.z, self.th = self.moveBindings[command]
         else:
+            print(command, "not in moveBindings")
             self.x = self.y = self.z = self.th = 0.0
         
         twist = Twist()
