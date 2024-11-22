@@ -1,0 +1,32 @@
+[0.009s] Invoking command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/cv_bridge -- -j20 -l20
+[0.041s] [ 12%] Built target gtest
+[0.042s] [ 31%] Built target cv_bridge
+[0.042s] [ 43%] Built target gtest_main
+[0.048s] [ 43%] Built target ament_cmake_python_copy_cv_bridge
+[0.059s] [ 81%] Built target cv_bridge-utest
+[0.061s] [ 87%] [32mBuilding CXX object src/CMakeFiles/cv_bridge_boost.dir/module.cpp.o[0m
+[0.063s] [ 93%] [32mBuilding CXX object src/CMakeFiles/cv_bridge_boost.dir/module_opencv4.cpp.o[0m
+[0.067s] In file included from [01m[K/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge/src/module.cpp:36[m[K:
+[0.067s] [01m[K/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge/src/module.hpp:20:10:[m[K [01;31m[Kfatal error: [m[Knumpy/ndarrayobject.h: No such file or directory
+[0.067s]    20 | #include [01;31m[K<numpy/ndarrayobject.h>[m[K
+[0.067s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.067s] compilation terminated.
+[0.068s] gmake[2]: *** [src/CMakeFiles/cv_bridge_boost.dir/build.make:76: src/CMakeFiles/cv_bridge_boost.dir/module.cpp.o] Error 1
+[0.068s] gmake[2]: *** Waiting for unfinished jobs....
+[0.069s] In file included from [01m[K/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge/src/module_opencv4.cpp:3[m[K:
+[0.069s] [01m[K/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge/src/module.hpp:20:10:[m[K [01;31m[Kfatal error: [m[Knumpy/ndarrayobject.h: No such file or directory
+[0.069s]    20 | #include [01;31m[K<numpy/ndarrayobject.h>[m[K
+[0.070s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.070s] compilation terminated.
+[0.070s] gmake[2]: *** [src/CMakeFiles/cv_bridge_boost.dir/build.make:90: src/CMakeFiles/cv_bridge_boost.dir/module_opencv4.cpp.o] Error 1
+[0.070s] gmake[1]: *** [CMakeFiles/Makefile2:287: src/CMakeFiles/cv_bridge_boost.dir/all] Error 2
+[0.070s] gmake[1]: *** Waiting for unfinished jobs....
+[0.180s] running egg_info
+[0.180s] writing cv_bridge.egg-info/PKG-INFO
+[0.180s] writing dependency_links to cv_bridge.egg-info/dependency_links.txt
+[0.181s] writing top-level names to cv_bridge.egg-info/top_level.txt
+[0.181s] reading manifest file 'cv_bridge.egg-info/SOURCES.txt'
+[0.182s] writing manifest file 'cv_bridge.egg-info/SOURCES.txt'
+[0.199s] [ 93%] Built target ament_cmake_python_build_cv_bridge_egg
+[0.199s] gmake: *** [Makefile:146: all] Error 2
+[0.201s] Invoked command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge' returned '2': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/cv_bridge -- -j20 -l20

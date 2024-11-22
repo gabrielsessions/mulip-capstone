@@ -1,0 +1,4 @@
+[console_scripts]
+bringup = cozmo_ros2_nosdk.bringup:main
+teleop_twist_keyboard = cozmo_ros2_nosdk.teleop_twist_keyboard:main
+

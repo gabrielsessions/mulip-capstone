@@ -1,0 +1,23 @@
+[0.358s] Invoking command in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk': PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/prefix_override:/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/cozmo_ros2_nosdk build --build-base /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/build install --record /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log --install-scripts $base/lib/cozmo_ros2_nosdk --single-version-externally-managed
+[0.477s] /usr/lib/python3/dist-packages/setuptools/dist.py:723: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[0.477s]   warnings.warn(
+[0.483s] running egg_info
+[0.483s] writing ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/PKG-INFO
+[0.483s] writing dependency_links to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/dependency_links.txt
+[0.483s] writing entry points to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/entry_points.txt
+[0.483s] writing requirements to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/requires.txt
+[0.483s] writing top-level names to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/top_level.txt
+[0.485s] reading manifest file '../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/SOURCES.txt'
+[0.485s] writing manifest file '../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/SOURCES.txt'
+[0.486s] running build
+[0.486s] running build_py
+[0.486s] running install
+[0.486s] running install_lib
+[0.487s] running install_egg_info
+[0.488s] removing '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages/cozmo_ros2_nosdk-0.7.0-py3.10.egg-info' (and everything under it)
+[0.488s] Copying ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages/cozmo_ros2_nosdk-0.7.0-py3.10.egg-info
+[0.489s] running install_scripts
+[0.501s] Installing bringup script to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/cozmo_ros2_nosdk
+[0.501s] Installing teleop_twist_keyboard script to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/cozmo_ros2_nosdk
+[0.501s] writing list of installed files to '/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log'
+[0.516s] Invoked command in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk' returned '0': PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/prefix_override:/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/cozmo_ros2_nosdk build --build-base /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/build install --record /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log --install-scripts $base/lib/cozmo_ros2_nosdk --single-version-externally-managed

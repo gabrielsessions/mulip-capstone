@@ -1,0 +1,6 @@
+source;share/cozmo_ros2_nosdk/hook/pythonpath.ps1
+source;share/cozmo_ros2_nosdk/hook/pythonpath.dsv
+source;share/cozmo_ros2_nosdk/hook/pythonpath.sh
+source;share/cozmo_ros2_nosdk/hook/ament_prefix_path.ps1
+source;share/cozmo_ros2_nosdk/hook/ament_prefix_path.dsv
+source;share/cozmo_ros2_nosdk/hook/ament_prefix_path.sh

@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: cozmo-ros2-nosdk
+Version: 0.7.0
+Summary: Standalone ROS2 Driver for Cozmo (no SDK required)
+Home-page: UNKNOWN
+Author: Alfonso Troya
+Author-email: alfonso.troya@gmail.com
+Maintainer: Alfonso Troya
+Maintainer-email: alfonso.troya@gmail.com
+License: Apache License, Version 2.0
+Keywords: ROS,Cozmo,driver
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+
+UNKNOWN
+

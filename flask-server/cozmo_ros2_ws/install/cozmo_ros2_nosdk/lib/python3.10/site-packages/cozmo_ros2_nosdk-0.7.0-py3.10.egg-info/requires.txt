@@ -1,0 +1,3 @@
+numpy
+pycozmo
+setuptools
