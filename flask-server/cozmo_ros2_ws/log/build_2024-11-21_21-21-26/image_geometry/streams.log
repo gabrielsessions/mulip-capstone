@@ -1,0 +1,14 @@
+[0.007s] Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20
+[0.038s] [ 22%] Built target gtest_main
+[0.040s] [ 77%] Built target image_geometry
+[0.040s] [ 77%] Built target gtest
+[0.042s] [ 77%] Built target ament_cmake_python_copy_image_geometry
+[0.058s] [100%] Built target image_geometry-utest
+[0.197s] running egg_info
+[0.197s] writing image_geometry.egg-info/PKG-INFO
+[0.197s] writing dependency_links to image_geometry.egg-info/dependency_links.txt
+[0.197s] writing top-level names to image_geometry.egg-info/top_level.txt
+[0.198s] reading manifest file 'image_geometry.egg-info/SOURCES.txt'
+[0.199s] writing manifest file 'image_geometry.egg-info/SOURCES.txt'
+[0.215s] [100%] Built target ament_cmake_python_build_image_geometry_egg
+[0.222s] Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20

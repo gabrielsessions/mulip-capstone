@@ -1,0 +1,447 @@
+[0.081s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.081s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=20, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x764e471025c0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x764e471fab60>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x764e471fab60>>, mixin_verb=('build',))
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.164s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.164s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/marvin/cozmo_ros2_ws'
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.164s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.165s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.170s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extensions ['ignore', 'ignore_ament_install']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extension 'ignore'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extension 'ignore_ament_install'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extensions ['colcon_pkg']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extension 'colcon_pkg'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extensions ['colcon_meta']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extension 'colcon_meta'
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extensions ['ros']
+[0.171s] Level 1:colcon.colcon_core.package_identification:_identify(src/cozmo_ros2_nosdk) by extension 'ros'
+[0.173s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cozmo_ros2_nosdk' with type 'ros.ament_python' and name 'cozmo_ros2_nosdk'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/pycozmo) by extensions ['ignore', 'ignore_ament_install']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/pycozmo) by extension 'ignore'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/pycozmo) ignored
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['ignore', 'ignore_ament_install']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'ignore'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'ignore_ament_install'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['colcon_pkg']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'colcon_pkg'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['colcon_meta']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'colcon_meta'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['ros']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'ros'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['cmake', 'python']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'cmake'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'python'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extensions ['python_setup_py']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/rviz_config) by extension 'python_setup_py'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['ignore', 'ignore_ament_install']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'ignore'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'ignore_ament_install'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['colcon_pkg']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'colcon_pkg'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['colcon_meta']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'colcon_meta'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['ros']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'ros'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['cmake', 'python']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'cmake'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'python'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extensions ['python_setup_py']
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv) by extension 'python_setup_py'
+[0.173s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extensions ['ignore', 'ignore_ament_install']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extension 'ignore'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extension 'ignore_ament_install'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extensions ['colcon_pkg']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extension 'colcon_pkg'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extensions ['colcon_meta']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extension 'colcon_meta'
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extensions ['ros']
+[0.174s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/cv_bridge) by extension 'ros'
+[0.175s] DEBUG:colcon.colcon_core.package_identification:Package 'src/vision_opencv/cv_bridge' with type 'ros.ament_cmake' and name 'cv_bridge'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extensions ['ignore', 'ignore_ament_install']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extension 'ignore'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extension 'ignore_ament_install'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extensions ['colcon_pkg']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extension 'colcon_pkg'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extensions ['colcon_meta']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extension 'colcon_meta'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extensions ['ros']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/image_geometry) by extension 'ros'
+[0.175s] DEBUG:colcon.colcon_core.package_identification:Package 'src/vision_opencv/image_geometry' with type 'ros.ament_cmake' and name 'image_geometry'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extensions ['ignore', 'ignore_ament_install']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extension 'ignore'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extension 'ignore_ament_install'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extensions ['colcon_pkg']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extension 'colcon_pkg'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extensions ['colcon_meta']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extension 'colcon_meta'
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extensions ['ros']
+[0.175s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/opencv_tests) by extension 'ros'
+[0.176s] DEBUG:colcon.colcon_core.package_identification:Package 'src/vision_opencv/opencv_tests' with type 'ros.ament_python' and name 'opencv_tests'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extensions ['ignore', 'ignore_ament_install']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extension 'ignore'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extension 'ignore_ament_install'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extensions ['colcon_pkg']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extension 'colcon_pkg'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extensions ['colcon_meta']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extension 'colcon_meta'
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extensions ['ros']
+[0.176s] Level 1:colcon.colcon_core.package_identification:_identify(src/vision_opencv/vision_opencv) by extension 'ros'
+[0.176s] DEBUG:colcon.colcon_core.package_identification:Package 'src/vision_opencv/vision_opencv' with type 'ros.ament_cmake' and name 'vision_opencv'
+[0.176s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.176s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.176s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.176s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.176s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.193s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.195s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 304 installed packages in /opt/ros/iron
+[0.196s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.216s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'image_geometry' is in: /opt/ros/iron
+	'cv_bridge' is in: /opt/ros/iron
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding cv_bridge image_geometry
+
+This may be promoted to an error in a future release of colcon-override-check.
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_target' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_clean_cache' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_clean_first' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'cmake_force_configure' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'ament_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'catkin_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cozmo_ros2_nosdk' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.217s] DEBUG:colcon.colcon_core.verb:Building package 'cozmo_ros2_nosdk' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk', 'merge_install': False, 'path': '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk', 'symlink_install': False, 'test_result_base': None}
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_target' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'cv_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.217s] DEBUG:colcon.colcon_core.verb:Building package 'cv_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/marvin/cozmo_ros2_ws/build/cv_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/marvin/cozmo_ros2_ws/install/cv_bridge', 'merge_install': False, 'path': '/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge', 'symlink_install': False, 'test_result_base': None}
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_target' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_clean_cache' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_clean_first' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'cmake_force_configure' from command line to 'False'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'ament_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'catkin_cmake_args' from command line to 'None'
+[0.217s] Level 5:colcon.colcon_core.verb:set package 'image_geometry' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.217s] DEBUG:colcon.colcon_core.verb:Building package 'image_geometry' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/marvin/cozmo_ros2_ws/build/image_geometry', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/marvin/cozmo_ros2_ws/install/image_geometry', 'merge_install': False, 'path': '/home/marvin/cozmo_ros2_ws/src/vision_opencv/image_geometry', 'symlink_install': False, 'test_result_base': None}
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_target' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_clean_cache' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_clean_first' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'cmake_force_configure' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'ament_cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'catkin_cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'opencv_tests' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.218s] DEBUG:colcon.colcon_core.verb:Building package 'opencv_tests' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/marvin/cozmo_ros2_ws/build/opencv_tests', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/marvin/cozmo_ros2_ws/install/opencv_tests', 'merge_install': False, 'path': '/home/marvin/cozmo_ros2_ws/src/vision_opencv/opencv_tests', 'symlink_install': False, 'test_result_base': None}
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_target' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_clean_cache' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_clean_first' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'cmake_force_configure' from command line to 'False'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'ament_cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'catkin_cmake_args' from command line to 'None'
+[0.218s] Level 5:colcon.colcon_core.verb:set package 'vision_opencv' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.218s] DEBUG:colcon.colcon_core.verb:Building package 'vision_opencv' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/marvin/cozmo_ros2_ws/build/vision_opencv', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/marvin/cozmo_ros2_ws/install/vision_opencv', 'merge_install': False, 'path': '/home/marvin/cozmo_ros2_ws/src/vision_opencv/vision_opencv', 'symlink_install': False, 'test_result_base': None}
+[0.218s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.219s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.219s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge' with build type 'ament_cmake'
+[0.219s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge'
+[0.222s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.222s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.222s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.224s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/image_geometry' with build type 'ament_cmake'
+[0.224s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/image_geometry'
+[0.224s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.224s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.225s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk' with build type 'ament_python'
+[0.225s] Level 1:colcon.colcon_core.shell:create_environment_hook('cozmo_ros2_nosdk', 'ament_prefix_path')
+[0.225s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/ament_prefix_path.ps1'
+[0.226s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/ament_prefix_path.dsv'
+[0.226s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/ament_prefix_path.sh'
+[0.226s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.226s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.229s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/cv_bridge
+[0.230s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/image_geometry -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/image_geometry
+[0.362s] WARNING:colcon.colcon_ros.task.ament_python.build:Package 'cozmo_ros2_nosdk' doesn't explicitly install a marker in the package index (colcon-ros currently does it implicitly but that fallback will be removed in the future)
+[0.363s] WARNING:colcon.colcon_ros.task.ament_python.build:Package 'cozmo_ros2_nosdk' doesn't explicitly install the 'package.xml' file (colcon-ros currently does it implicitly but that fallback will be removed in the future)
+[0.363s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk'
+[0.363s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.363s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.554s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk': PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/prefix_override:/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/cozmo_ros2_nosdk build --build-base /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/build install --record /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log --install-scripts $base/lib/cozmo_ros2_nosdk --single-version-externally-managed
+[0.710s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/src/cozmo_ros2_nosdk' returned '0': PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/prefix_override:/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/cozmo_ros2_nosdk build --build-base /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/build install --record /home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log --install-scripts $base/lib/cozmo_ros2_nosdk --single-version-externally-managed
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk' for CMake module files
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk' for CMake config files
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib'
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/bin'
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/pkgconfig/cozmo_ros2_nosdk.pc'
+[0.713s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages'
+[0.713s] Level 1:colcon.colcon_core.shell:create_environment_hook('cozmo_ros2_nosdk', 'pythonpath')
+[0.714s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/pythonpath.ps1'
+[0.714s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/pythonpath.dsv'
+[0.714s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/hook/pythonpath.sh'
+[0.714s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/bin'
+[0.714s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cozmo_ros2_nosdk)
+[0.714s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/package.ps1'
+[0.715s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/package.dsv'
+[0.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/package.sh'
+[0.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/package.bash'
+[0.717s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/cozmo_ros2_nosdk/package.zsh'
+[0.717s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/share/colcon-core/packages/cozmo_ros2_nosdk)
+[1.081s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/image_geometry -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/image_geometry
+[1.082s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20
+[2.108s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/cv_bridge -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/cv_bridge
+[2.108s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/cv_bridge -- -j20 -l20
+[4.059s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20
+[4.090s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/image_geometry
+[4.119s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(image_geometry)
+[4.119s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/image_geometry
+[4.119s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry' for CMake module files
+[4.120s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry' for CMake config files
+[4.120s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'cmake_prefix_path')
+[4.120s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.ps1'
+[4.120s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.dsv'
+[4.120s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.sh'
+[4.120s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib'
+[4.121s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'ld_library_path_lib')
+[4.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.ps1'
+[4.121s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.dsv'
+[4.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.sh'
+[4.121s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/bin'
+[4.121s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/pkgconfig/image_geometry.pc'
+[4.121s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages'
+[4.121s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'pythonpath')
+[4.121s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.ps1'
+[4.121s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.dsv'
+[4.122s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.sh'
+[4.122s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/bin'
+[4.122s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.ps1'
+[4.122s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.dsv'
+[4.123s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.sh'
+[4.123s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.bash'
+[4.123s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.zsh'
+[4.123s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/image_geometry/share/colcon-core/packages/image_geometry)
+[4.145s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(image_geometry)
+[4.145s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry' for CMake module files
+[4.145s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry' for CMake config files
+[4.145s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'cmake_prefix_path')
+[4.145s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.ps1'
+[4.146s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.dsv'
+[4.146s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/cmake_prefix_path.sh'
+[4.146s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib'
+[4.146s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'ld_library_path_lib')
+[4.146s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.ps1'
+[4.146s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.dsv'
+[4.146s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/ld_library_path_lib.sh'
+[4.146s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/bin'
+[4.147s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/pkgconfig/image_geometry.pc'
+[4.147s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages'
+[4.147s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_geometry', 'pythonpath')
+[4.147s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.ps1'
+[4.147s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.dsv'
+[4.147s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/hook/pythonpath.sh'
+[4.147s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/image_geometry/bin'
+[4.147s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.ps1'
+[4.148s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.dsv'
+[4.148s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.sh'
+[4.148s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.bash'
+[4.148s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/image_geometry/share/image_geometry/package.zsh'
+[4.148s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/image_geometry/share/colcon-core/packages/image_geometry)
+[8.244s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/cv_bridge -- -j20 -l20
+[8.272s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/cv_bridge
+[8.313s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cv_bridge)
+[8.313s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/cv_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/cv_bridge
+[8.314s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge' for CMake module files
+[8.315s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge' for CMake config files
+[8.315s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'cmake_prefix_path')
+[8.315s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.ps1'
+[8.316s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.dsv'
+[8.316s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.sh'
+[8.317s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib'
+[8.317s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'ld_library_path_lib')
+[8.317s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.ps1'
+[8.318s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.dsv'
+[8.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.sh'
+[8.319s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/bin'
+[8.319s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/pkgconfig/cv_bridge.pc'
+[8.319s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages'
+[8.319s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'pythonpath')
+[8.319s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.ps1'
+[8.319s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.dsv'
+[8.319s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.sh'
+[8.320s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/bin'
+[8.320s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.ps1'
+[8.320s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.dsv'
+[8.320s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.sh'
+[8.321s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.bash'
+[8.321s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.zsh'
+[8.321s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/colcon-core/packages/cv_bridge)
+[8.346s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cv_bridge)
+[8.346s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge' for CMake module files
+[8.346s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge' for CMake config files
+[8.347s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'cmake_prefix_path')
+[8.347s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.ps1'
+[8.347s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.dsv'
+[8.347s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/cmake_prefix_path.sh'
+[8.348s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib'
+[8.348s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'ld_library_path_lib')
+[8.348s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.ps1'
+[8.348s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.dsv'
+[8.348s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/ld_library_path_lib.sh'
+[8.348s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/bin'
+[8.348s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/pkgconfig/cv_bridge.pc'
+[8.348s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages'
+[8.348s] Level 1:colcon.colcon_core.shell:create_environment_hook('cv_bridge', 'pythonpath')
+[8.349s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.ps1'
+[8.349s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.dsv'
+[8.349s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/hook/pythonpath.sh'
+[8.349s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/cv_bridge/bin'
+[8.349s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.ps1'
+[8.350s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.dsv'
+[8.350s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.sh'
+[8.350s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.bash'
+[8.351s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/cv_bridge/package.zsh'
+[8.351s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/cv_bridge/share/colcon-core/packages/cv_bridge)
+[8.351s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/opencv_tests' with build type 'ament_python'
+[8.351s] Level 1:colcon.colcon_core.shell:create_environment_hook('opencv_tests', 'ament_prefix_path')
+[8.351s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/ament_prefix_path.ps1'
+[8.352s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/ament_prefix_path.dsv'
+[8.352s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/ament_prefix_path.sh'
+[8.353s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.353s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.354s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/vision_opencv' with build type 'ament_cmake'
+[8.354s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/vision_opencv'
+[8.354s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.354s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.516s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/opencv_tests'
+[8.516s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[8.516s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[8.520s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/vision_opencv -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/vision_opencv
+[8.721s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/opencv_tests': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/opencv_tests/prefix_override:/home/marvin/cozmo_ros2_ws/install/opencv_tests/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/opencv_tests build --build-base /home/marvin/cozmo_ros2_ws/build/opencv_tests/build install --record /home/marvin/cozmo_ros2_ws/build/opencv_tests/install.log --install-scripts $base/lib/opencv_tests --single-version-externally-managed install_data
+[8.873s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests' for CMake module files
+[8.873s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/src/vision_opencv/opencv_tests' returned '0': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/build/opencv_tests/prefix_override:/home/marvin/cozmo_ros2_ws/install/opencv_tests/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../build/opencv_tests build --build-base /home/marvin/cozmo_ros2_ws/build/opencv_tests/build install --record /home/marvin/cozmo_ros2_ws/build/opencv_tests/install.log --install-scripts $base/lib/opencv_tests --single-version-externally-managed install_data
+[8.873s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests' for CMake config files
+[8.874s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests/lib'
+[8.874s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests/bin'
+[8.874s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests/lib/pkgconfig/opencv_tests.pc'
+[8.874s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests/lib/python3.10/site-packages'
+[8.874s] Level 1:colcon.colcon_core.shell:create_environment_hook('opencv_tests', 'pythonpath')
+[8.874s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/pythonpath.ps1'
+[8.874s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/pythonpath.dsv'
+[8.874s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/hook/pythonpath.sh'
+[8.875s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/opencv_tests/bin'
+[8.875s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(opencv_tests)
+[8.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/package.ps1'
+[8.875s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/package.dsv'
+[8.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/package.sh'
+[8.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/package.bash'
+[8.875s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/opencv_tests/package.zsh'
+[8.876s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/opencv_tests/share/colcon-core/packages/opencv_tests)
+[8.961s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv' returned '0': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake /home/marvin/cozmo_ros2_ws/src/vision_opencv/vision_opencv -DCMAKE_INSTALL_PREFIX=/home/marvin/cozmo_ros2_ws/install/vision_opencv
+[8.961s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/vision_opencv -- -j20 -l20
+[8.990s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv' returned '0': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/vision_opencv -- -j20 -l20
+[9.007s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/vision_opencv
+[9.014s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vision_opencv)
+[9.014s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/marvin/cozmo_ros2_ws/build/vision_opencv' returned '0': AMENT_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry:/home/marvin/cozmo_ros2_ws/install/cv_bridge:/opt/ros/iron LD_LIBRARY_PATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/marvin/cozmo_ros2_ws/install/image_geometry/lib/python3.10/site-packages:/home/marvin/cozmo_ros2_ws/install/cv_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/vision_opencv
+[9.014s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv' for CMake module files
+[9.014s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv' for CMake config files
+[9.014s] Level 1:colcon.colcon_core.shell:create_environment_hook('vision_opencv', 'cmake_prefix_path')
+[9.015s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.ps1'
+[9.015s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.dsv'
+[9.015s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.sh'
+[9.015s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/bin'
+[9.015s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/lib/pkgconfig/vision_opencv.pc'
+[9.015s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/lib/python3.10/site-packages'
+[9.015s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/bin'
+[9.016s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.ps1'
+[9.016s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.dsv'
+[9.016s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.sh'
+[9.016s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.bash'
+[9.016s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.zsh'
+[9.016s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/colcon-core/packages/vision_opencv)
+[9.034s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(vision_opencv)
+[9.034s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv' for CMake module files
+[9.034s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv' for CMake config files
+[9.035s] Level 1:colcon.colcon_core.shell:create_environment_hook('vision_opencv', 'cmake_prefix_path')
+[9.035s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.ps1'
+[9.035s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.dsv'
+[9.035s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/hook/cmake_prefix_path.sh'
+[9.035s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/bin'
+[9.035s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/lib/pkgconfig/vision_opencv.pc'
+[9.035s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/lib/python3.10/site-packages'
+[9.036s] Level 1:colcon.colcon_core.environment:checking '/home/marvin/cozmo_ros2_ws/install/vision_opencv/bin'
+[9.036s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.ps1'
+[9.036s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.dsv'
+[9.036s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.sh'
+[9.036s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.bash'
+[9.037s] INFO:colcon.colcon_core.shell:Creating package script '/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/vision_opencv/package.zsh'
+[9.037s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/marvin/cozmo_ros2_ws/install/vision_opencv/share/colcon-core/packages/vision_opencv)
+[9.037s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[9.037s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[9.037s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[9.037s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[9.041s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[9.041s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[9.041s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[9.055s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[9.055s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/marvin/cozmo_ros2_ws/install/local_setup.ps1'
+[9.055s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/marvin/cozmo_ros2_ws/install/_local_setup_util_ps1.py'
+[9.056s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/marvin/cozmo_ros2_ws/install/setup.ps1'
+[9.057s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/marvin/cozmo_ros2_ws/install/local_setup.sh'
+[9.057s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/marvin/cozmo_ros2_ws/install/_local_setup_util_sh.py'
+[9.057s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/marvin/cozmo_ros2_ws/install/setup.sh'
+[9.058s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/marvin/cozmo_ros2_ws/install/local_setup.bash'
+[9.058s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/marvin/cozmo_ros2_ws/install/setup.bash'
+[9.059s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/marvin/cozmo_ros2_ws/install/local_setup.zsh'
+[9.059s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/marvin/cozmo_ros2_ws/install/setup.zsh'

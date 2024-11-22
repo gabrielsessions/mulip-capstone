@@ -1,0 +1,4 @@
+Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20
+Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --build /home/marvin/cozmo_ros2_ws/build/image_geometry -- -j20 -l20
+Invoking command in '/home/marvin/cozmo_ros2_ws/build/image_geometry': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/image_geometry
+Invoked command in '/home/marvin/cozmo_ros2_ws/build/image_geometry' returned '0': CMAKE_PREFIX_PATH=/opt/ros/iron /usr/bin/cmake --install /home/marvin/cozmo_ros2_ws/build/image_geometry

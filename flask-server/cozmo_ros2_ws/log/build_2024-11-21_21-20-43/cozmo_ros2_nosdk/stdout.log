@@ -1,0 +1,19 @@
+running egg_info
+writing ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/PKG-INFO
+writing dependency_links to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/dependency_links.txt
+writing entry points to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/entry_points.txt
+writing requirements to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/requires.txt
+writing top-level names to ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/top_level.txt
+reading manifest file '../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/SOURCES.txt'
+writing manifest file '../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_egg_info
+removing '/home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages/cozmo_ros2_nosdk-0.7.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/cozmo_ros2_nosdk/cozmo_ros2_nosdk.egg-info to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/python3.10/site-packages/cozmo_ros2_nosdk-0.7.0-py3.10.egg-info
+running install_scripts
+Installing bringup script to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/cozmo_ros2_nosdk
+Installing teleop_twist_keyboard script to /home/marvin/cozmo_ros2_ws/install/cozmo_ros2_nosdk/lib/cozmo_ros2_nosdk
+writing list of installed files to '/home/marvin/cozmo_ros2_ws/build/cozmo_ros2_nosdk/install.log'
