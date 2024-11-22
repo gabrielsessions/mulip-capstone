@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+  </head>
+  <body>
+    <h1>Welcome to the Secure Page</h1>
+    <p>This page has automatically stored a secure token for you.</p>
+
+    <script>
+      // Retrieve the JWT token passed from the server
+      const jwtToken = "{{ jwt_token }}";
+
+      // Store the JWT in localStorage
+      localStorage.setItem("jwt_token", jwtToken);
+
+      // Confirm to the user that the token has been stored
+      document.body.insertAdjacentHTML(
+        "beforeend",
+        "<p>Token has been stored in localStorage!</p>"
+      );
+      console.log("JWT stored:", jwtToken); // For debugging, can be removed
+    </script>
+  </body>
+</html>
