@@ -15,7 +15,6 @@ CORS(app, supports_credentials=True)
 
 cozmoCtrl = TeleopTwistWeb()
 
-cookieClickerScore = 0
 
 @app.route('/')
 def index():
@@ -24,22 +23,22 @@ def index():
 @app.route('/debug')
 def debug():
     return render_template('debug.html')
+
+@app.route('/teleop-demo')
+def teleop_demo():
+    return render_template('teleop-demo.html')
     
 
 @socketio.on('message')
 def handle_message(msg):
-    '''global cookieClickerScore
-    print('Received cookie click!', cookieClickerScore)
-    cookieClickerScore += 1
-    emit('response', str(cookieClickerScore), broadcast=True)'''
-    print(msg) 
-    cozmoCtrl.send_command(msg)
+    action = str(msg)
+    cozmoCtrl.send_command(action)
+    #emit(app, action)
     
 
 @socketio.on('connect')
 def send_global_score():
     print("Connection!")
-    emit('response', cookieClickerScore)
 
 port_number = 8080
 if __name__ == '__main__':
