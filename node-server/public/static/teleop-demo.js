@@ -32,21 +32,13 @@ function cookieClicked() {
 }
 
 function globalScoreUpdate(newVal) {
-  if (!(newVal instanceof Number)) {
-    newVal = parseInt(newVal);
-  }
-  globalCookieCount = newVal;
-  document.getElementById("global-score").innerText = globalCookieCount;
+  document.getElementById("current-action").innerText = newVal;
 }
+
+const buttons = ["s_fwd", "s_bwd", "s_lft", "s_rht", "stop"];
 
 window.onload = () => {
   console.log("Loading DOM");
-  const cookie = document.querySelector('#cookie');
-
-  cookie.addEventListener('click', () => {
-    cookieClicked();
-    console.log("Local Count:", localCookieCount);
-  });
 
   socket.on("response", (data) => {
     console.log("Message from server:", data);
@@ -59,6 +51,14 @@ window.onload = () => {
 
   socket.on("connect", () => {
     console.log("Socket ID: ", socket.id);
+  });
+
+  buttons.forEach(id => {
+    console.log("STUUDIYOUGKHGSDTIYI OIUGYWDLUIHGHBJ:", id);
+    document.getElementById(id).addEventListener('click', () => {
+        console.log("Button clicked: ", id);
+        socket.send(id);
+    })
   });
 
 };
