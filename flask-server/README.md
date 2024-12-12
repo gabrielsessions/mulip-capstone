@@ -18,6 +18,9 @@ Framework: Flask (Python)
 6. Run a dev instance of the server
   - `flask run`
 
+## Run the standalone WebSocket client (New as of Dec 12th)
+Complete all setup steps except for 6 and run `python3 script.py`
+
 
 ## Run via Docker Container
 ```bash
