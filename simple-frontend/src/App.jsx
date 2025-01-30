@@ -30,14 +30,14 @@ function App() {
       console.log("Socket connection attempted:");
 
       // Establish the Socket.IO connection
-      const socket = io('http://127.0.0.1:5000', {
+      const socket = io('http://localhost:3000', {
         transports: ['websocket'],
       });
 
       socket.on("connect", () => {
         console.log("Connected to server!");
         setWS(socket); // Save the socket to state after a successful connection
-        socket.emit("message", "Hello!"); // Emit a message to the server
+        //socket.emit("message", "Hello!"); // Emit a message to the server
       });
 
       socket.on("disconnect", () => {
@@ -46,7 +46,7 @@ function App() {
         showAlert("Socket connection closed. Please reload the page to reconnect!");
       });
 
-      socket.on("response", (message) => {
+      socket.on("message", (message) => {
         console.log("Received from server:", message);
         setMessages((prev) => [...prev, message]);
       });
