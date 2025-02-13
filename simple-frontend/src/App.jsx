@@ -30,7 +30,7 @@ function App() {
       console.log("Socket connection attempted:");
 
       // Establish the Socket.IO connection
-      const socket = io('http://localhost:3000', {
+      const socket = io('/', {
         transports: ['websocket'],
       });
 
