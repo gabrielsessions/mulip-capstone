@@ -18,13 +18,13 @@ class TeleopTwistWeb:
         # Mapping button names to movement directions
         self.moveBindings = {
             "f_fwd": (1.0, 0.0, 0.0, 0.0),   # Forward fast
-            "s_fwd": (0.5, 0.0, 0.0, 0.0),   # Forward slow
+            "s_fwd": (0.8, 0.0, 0.0, 0.0),   # Forward slow
             "f_bwd": (-1.0, 0.0, 0.0, 0.0),  # Backward fast
-            "s_bwd": (-0.5, 0.0, 0.0, 0.0),  # Backward slow
+            "s_bwd": (-0.8, 0.0, 0.0, 0.0),  # Backward slow
             "f_lft": (0.0, 0.0, 0.0, 1.0),   # Turn left fast
-            "s_lft": (0.0, 0.0, 0.0, 0.5),   # Turn left slow
+            "s_lft": (0.0, 0.0, 0.0, 0.8),   # Turn left slow
             "f_rht": (0.0, 0.0, 0.0, -1.0),  # Turn right fast
-            "s_rht": (0.0, 0.0, 0.0, -0.5),  # Turn right slow
+            "s_rht": (0.0, 0.0, 0.0, -0.8),  # Turn right slow
             "stop": (0.0, 0.0, 0.0, 0.0)     # Stop
         }
 
