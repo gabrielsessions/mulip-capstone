@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <title>AR Racetrack in A-Frame</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
+      <!-- Preload the racetrack model -->
+      <a-assets>
+        <a-asset-item id="track" src="racing_track.gltf"></a-asset-item>
+      </a-assets>
+
+      <!-- Lighting -->
       <a-light type="ambient" intensity="0.5"></a-light>
       <a-light type="directional" position="2 5 3" intensity="0.8"></a-light>
 
-      <a-box id="trackArea" position="0 0 0" width="12" height="0.1" depth="12" 
-        material="color: blue; opacity: 0.2; transparent: true">
+      <!-- The area (plane) where the track will be placed -->
+      <a-box
+        id="trackArea"
+        position="0 0 0"
+        width="12"
+        height="0.1"
+        depth="12"
+        material="color: blue; opacity: 0.2; transparent: true"
+      >
       </a-box>
 
-      <a-scene>
-        <a-assets>
-          <a-asset-item id="track" src="racing_track.gltf"></a-asset-item>
-        </a-assets>
-      
-        <a-entity gltf-model="#track"></a-entity>
-      </a-scene>
+      <!-- Insert the racetrack model -->
+      <a-entity
+        gltf-model="#track"
+        position="0 0 0"
+        rotation="0 0 0"
+        scale="1 1 1"
+      ></a-entity>
 
+      <!-- Camera with cursor -->
       <a-camera position="0 5 10">
         <a-cursor></a-cursor>
       </a-camera>
     </a-scene>
   </body>
 </html>
-
-
