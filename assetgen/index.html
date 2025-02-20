@@ -12,38 +12,19 @@
         material="color: blue; opacity: 0.2; transparent: true">
       </a-box>
 
+      <a-scene>
+        <a-assets>
+          <a-asset-item id="track" src="racing_track.gltf"></a-asset-item>
+        </a-assets>
       
-      <a-entity id="track"></a-entity>
+        <a-entity gltf-model="#track"></a-entity>
+      </a-scene>
 
       <a-camera position="0 5 10">
         <a-cursor></a-cursor>
       </a-camera>
     </a-scene>
-
-    <script>
-      AFRAME.registerComponent('place-track', {
-        init: function () {
-          let trackArea = document.querySelector("#trackArea");
-          let track = document.querySelector("#track");
-
-          let width = trackArea.getAttribute("width");
-          let depth = trackArea.getAttribute("depth");
-
-          let trackRadius = Math.min(width, depth) / 2.5; 
-
-          let torus = document.createElement("a-torus");
-          torus.setAttribute("position", "0 0.1 0");
-          torus.setAttribute("radius", trackRadius);
-          torus.setAttribute("radius-tubular", "0.3");
-          torus.setAttribute("rotation", "90 0 0");
-          torus.setAttribute("material", "color: gray; opacity: 1; metalness: 0.5; roughness: 0.8");
-
-          track.appendChild(torus);
-        }
-      });
-
-      document.querySelector("#track").setAttribute("place-track", "");
-    </script>
   </body>
 </html>
+
 
