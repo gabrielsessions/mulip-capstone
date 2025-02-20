@@ -43,8 +43,8 @@ def generate_qr():
     """
     Generates a QR code with a URL pointing to the landing page.
     """
-    # URL for the landing page (generated dynamically)
-    landing_url = url_for("landing", _external=True)
+    # # URL for the landing page (generated dynamically)
+    landing_url = f"http://127.0.0.1:5000/landing"
     
     # Generate QR code with the URL
     qr = qrcode.QRCode(
