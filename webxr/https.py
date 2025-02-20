@@ -1,7 +1,7 @@
 import http.server
 import ssl
 
-IP = "YOUR_IP_ADDR"
+IP = "localhost"
 
 httpd = http.server.HTTPServer((IP, 8000), http.server.SimpleHTTPRequestHandler)
 

@@ -1,83 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style type="text/css">
-        body {
-            margin: 0;
-            background-color: #000;
-        }
-        canvas {
-            display: block;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <title>AR Racing Track with Three.js</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+      }
+      canvas {
+        display: block;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <script type="module">
-        // Import three
-        import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-        // Import the default VRButton
-        import { VRButton } from 'https://unpkg.com/three/examples/jsm/webxr/VRButton.js';
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js";
+      import { ARButton } from "https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/webxr/ARButton.js";
+      import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js";
 
-        // Make a new scene
-        let scene = new THREE.Scene();
-        // Set background color of the scene to gray
-        scene.background = new THREE.Color(0x505050);
+      // Create the scene and set a gray background
+      let scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x505050);
 
-        // Make a camera. note that far is set to 100, which is better for realworld sized environments
-        let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.set(0, 1.6, 3);
-        scene.add(camera);
+      // Create a camera with a suitable field of view
+      let camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100
+      );
+      camera.position.set(0, 1.6, 3);
+      scene.add(camera);
 
-        // Add some lights
-        var light = new THREE.DirectionalLight(0xffffff,0.5);
-        light.position.set(1, 1, 1).normalize();
-        scene.add(light);
-        scene.add(new THREE.AmbientLight(0xffffff,0.5))
+      // Add some basic lighting
+      const light = new THREE.DirectionalLight(0xffffff, 0.5);
+      light.position.set(1, 1, 1).normalize();
+      scene.add(light);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
-        // Make a red cube
-        let cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1,1,1),
-            new THREE.MeshLambertMaterial({color:'red'})
-        );
-        cube.position.set(0, 1.5, -10);
-        scene.add(cube);
+      // Optional: A small cube for reference
+      const cube = new THREE.Mesh(
+        new THREE.BoxGeometry(0.2, 0.2, 0.2),
+        new THREE.MeshLambertMaterial({ color: "red" })
+      );
+      cube.position.set(0, 1.5, -2);
+      scene.add(cube);
 
-        // Make a renderer that fills the screen
-        let renderer = new THREE.WebGLRenderer({antialias: true});
-        renderer.setPixelRatio(window.devicePixelRatio);
+      // *** GLTFLoader Block for Loading the Racing Track Model ***
+      // Load the racing track model (ensure racing_track.gltf is in your project directory)
+      let track = null;
+      const loader = new GLTFLoader();
+      loader.load(
+        "racing_track.gltf",
+        function (gltf) {
+          track = gltf.scene;
+          track.scale.set(1, 1, 1); // Adjust the scale as needed
+          // Set an initial position (will be updated via hit testing)
+          track.position.set(0, 0, -2);
+          scene.add(track);
+        },
+        undefined,
+        function (error) {
+          console.error("Error loading track model:", error);
+        }
+      );
+      // *** End of GLTFLoader Block ***
+
+      // Create the renderer and enable XR
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.xr.enabled = true;
+      document.body.appendChild(renderer.domElement);
+
+      // Add the AR button with hit test support
+      document.body.appendChild(
+        ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] })
+      );
+
+      window.addEventListener("resize", onWindowResize, false);
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        // Turn on VR support
-        renderer.xr.enabled = true;
-        // Set animation loop
-        renderer.setAnimationLoop(render);
-        // Add canvas to the page
-        document.body.appendChild(renderer.domElement);
+      }
 
-        // Add a button to enter/exit vr to the page
-        document.body.appendChild(VRButton.createButton(renderer));
+      // Hit test variables
+      let hitTestSource = null;
+      let hitTestSourceRequested = false;
 
-        // For AR instead, import ARButton at the top
-        //    import { ARButton } from 'https://unpkg.com/three/examples/jsm/webxr/ARButton.js';
-        // then create the button
-        //  document.body.appendChild(ARButton.createButton(renderer));
+      // Render loop with hit testing to position the track on a real surface
+      function render(time, frame) {
+        if (frame) {
+          const referenceSpace = renderer.xr.getReferenceSpace();
+          const session = renderer.xr.getSession();
 
-        // Handle browser resize
-        window.addEventListener('resize', onWindowResize, false);
+          if (!hitTestSourceRequested) {
+            session.requestReferenceSpace("viewer").then((refSpace) => {
+              session
+                .requestHitTestSource({ space: refSpace })
+                .then((source) => {
+                  hitTestSource = source;
+                });
+            });
+            session.addEventListener("end", () => {
+              hitTestSourceRequested = false;
+              hitTestSource = null;
+            });
+            hitTestSourceRequested = true;
+          }
 
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+          if (hitTestSource && track) {
+            const hitTestResults = frame.getHitTestResults(hitTestSource);
+            if (hitTestResults.length) {
+              const hit = hitTestResults[0];
+              const pose = hit.getPose(referenceSpace);
+              // Update the track's position to the hit location
+              track.position.set(
+                pose.transform.position.x,
+                pose.transform.position.y,
+                pose.transform.position.z
+              );
+            }
+          }
         }
 
-        function render(time) {
-            // Rotate the cube
-            cube.rotation.y = time / 1000;
-            // Draw everything
-            renderer.render(scene, camera);
-        }
+        // Optionally, animate the reference cube
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      renderer.setAnimationLoop(render);
     </script>
-</body>
+  </body>
 </html>
