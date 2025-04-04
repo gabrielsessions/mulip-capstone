@@ -2,19 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>AR Racetrack in A-Frame</title>
+    <title>AR Racetrack with Object Mapping</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <!-- Include AR.js for AR functionality -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <style>
-      .a-enter-vr, .a-enter-ar {
+      .a-enter-vr,
+      .a-enter-ar {
         position: fixed !important;
         bottom: 20px !important;
         transform: translateX(-50%) !important;
       }
-
       .a-enter-vr {
         left: 50% !important;
       }
-
       .a-enter-ar {
         left: 35% !important;
       }
@@ -26,38 +27,126 @@
         <a-asset-item id="track" src="racing_track.gltf"></a-asset-item>
       </a-assets>
 
+      <!-- Lighting -->
       <a-light type="ambient" intensity="0.5"></a-light>
       <a-light type="directional" position="2 5 3" intensity="0.8"></a-light>
 
-      <a-entity
-        id="racetrack"
-        gltf-model="#track"
-        position="0 0.05 -1.5" 
-        rotation="0 90 0"   
-        scale="0.5 0.5 0.5"
-      ></a-entity>
+      <!-- Four markers (one per corner of the box) -->
+      <a-marker
+        preset="custom"
+        type="pattern"
+        url="marker1.patt"
+        id="marker1"
+      ></a-marker>
+      <a-marker
+        preset="custom"
+        type="pattern"
+        url="marker2.patt"
+        id="marker2"
+      ></a-marker>
+      <a-marker
+        preset="custom"
+        type="pattern"
+        url="marker3.patt"
+        id="marker3"
+      ></a-marker>
+      <a-marker
+        preset="custom"
+        type="pattern"
+        url="marker4.patt"
+        id="marker4"
+      ></a-marker>
 
-      <a-camera position="0 5 15">
+      <!-- Parent entity for the AR asset; its transform will be updated -->
+      <a-entity id="boxAnchor">
+        <a-entity
+          id="arAsset"
+          gltf-model="#track"
+          position="0 0.05 -1.5"
+          rotation="0 90 0"
+          scale="0.5 0.5 0.5"
+        ></a-entity>
+      </a-entity>
+
+      <!-- Camera with a cursor -->
+      <a-entity camera>
         <a-cursor></a-cursor>
-      </a-camera>
+      </a-entity>
     </a-scene>
 
     <script>
+      // Apply AR button styling once the DOM is fully loaded.
       document.addEventListener("DOMContentLoaded", function () {
         let arButton = document.querySelector(".a-enter-vr");
         if (arButton) {
-          arButton.classList.add("a-enter-ar"); 
+          arButton.classList.add("a-enter-ar");
         }
       });
 
-      AFRAME.scenes[0].addEventListener("enter-ar", function () {
-        if (AFRAME.utils.device.isARCapable()) {
-          document.querySelector("#racetrack").setAttribute("scale", "0.3 0.3 0.3");
-        }
-      });
+      // Scale adjustments for AR mode.
+      document
+        .querySelector("a-scene")
+        .addEventListener("enter-ar", function () {
+          if (AFRAME.utils.device.isARCapable()) {
+            document
+              .querySelector("#arAsset")
+              .setAttribute("scale", "0.3 0.3 0.3");
+          }
+        });
+      document
+        .querySelector("a-scene")
+        .addEventListener("exit-ar", function () {
+          document.querySelector("#arAsset").setAttribute("scale", "1 1 1");
+        });
 
-      AFRAME.scenes[0].addEventListener("exit-ar", function () {
-        document.querySelector("#racetrack").setAttribute("scale", "1 1 1");
+      // Object to store the world matrices of detected markers.
+      let markerTransforms = {};
+
+      // Function to update the boxAnchor's transformation based on visible markers.
+      function updateBoxAnchor() {
+        const markerIds = Object.keys(markerTransforms);
+        if (markerIds.length === 0) return; // No markers detected.
+
+        let avgPosition = new THREE.Vector3();
+        let avgQuaternion = new THREE.Quaternion();
+        let first = true;
+
+        markerIds.forEach((id) => {
+          let mat = markerTransforms[id];
+          let pos = new THREE.Vector3();
+          let quat = new THREE.Quaternion();
+          let scale = new THREE.Vector3();
+          mat.decompose(pos, quat, scale);
+
+          avgPosition.add(pos);
+          if (first) {
+            avgQuaternion.copy(quat);
+            first = false;
+          } else {
+            // Using slerp to blend rotations.
+            avgQuaternion.slerp(quat, 1 / markerIds.length);
+          }
+        });
+
+        avgPosition.multiplyScalar(1 / markerIds.length);
+
+        // Update the container's position and orientation.
+        const boxAnchor = document.querySelector("#boxAnchor").object3D;
+        boxAnchor.position.copy(avgPosition);
+        boxAnchor.quaternion.copy(avgQuaternion);
+      }
+
+      // Add event listeners to update transforms when markers are found or lost.
+      document.querySelectorAll("a-marker").forEach((marker) => {
+        marker.addEventListener("markerFound", function () {
+          // Store the marker's current world matrix.
+          markerTransforms[marker.id] = marker.object3D.matrixWorld.clone();
+          updateBoxAnchor();
+        });
+        marker.addEventListener("markerLost", function () {
+          delete markerTransforms[marker.id];
+          updateBoxAnchor();
+        });
       });
     </script>
   </body>
