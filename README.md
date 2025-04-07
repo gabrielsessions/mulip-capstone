@@ -30,7 +30,7 @@ Sponsored By:
 ### Setup Steps (Must do every time)
 - Boot up the Raspberry Pi/Server
   - Clone this repository and `cd new-pi-server` if it has been updated
-  - Run `pm2 node index.js` (with process manager, recommended) or `node index.js` (w/o process manager)
+  - Run `pm2 run node index.js` (with process manager, recommended) or `node index.js` (w/o process manager)
 - Connect the overhead camera to the server (or another computer) and run collision detection script
   - `cd collision-detection`
   - `python3 stuff.py`
