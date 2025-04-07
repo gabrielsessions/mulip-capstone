@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>AR Racetrack with Object Mapping</title>
+    <title>AR Racetrack with 4 ArUco Markers – Continuous Update</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <!-- Include AR.js for AR functionality -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
@@ -57,8 +57,9 @@
         id="marker4"
       ></a-marker>
 
-      <!-- Parent entity for the AR asset; its transform will be updated -->
-      <a-entity id="boxAnchor">
+      <!-- Parent entity for the AR asset. The custom component 'update-anchor'
+           will update its position/rotation every frame based on the markers. -->
+      <a-entity id="boxAnchor" update-anchor>
         <a-entity
           id="arAsset"
           gltf-model="#track"
@@ -75,7 +76,7 @@
     </a-scene>
 
     <script>
-      // Apply AR button styling once the DOM is fully loaded.
+      // Optional: Style AR entry button when DOM is loaded.
       document.addEventListener("DOMContentLoaded", function () {
         let arButton = document.querySelector(".a-enter-vr");
         if (arButton) {
@@ -83,7 +84,7 @@
         }
       });
 
-      // Scale adjustments for AR mode.
+      // Scale adjustments when entering/exiting AR mode.
       document
         .querySelector("a-scene")
         .addEventListener("enter-ar", function () {
@@ -99,54 +100,52 @@
           document.querySelector("#arAsset").setAttribute("scale", "1 1 1");
         });
 
-      // Object to store the world matrices of detected markers.
-      let markerTransforms = {};
+      // Register a component that updates the boxAnchor every frame.
+      AFRAME.registerComponent("update-anchor", {
+        tick: function () {
+          // Get all markers.
+          const markers = document.querySelectorAll("a-marker");
+          const visibleMarkers = [];
 
-      // Function to update the boxAnchor's transformation based on visible markers.
-      function updateBoxAnchor() {
-        const markerIds = Object.keys(markerTransforms);
-        if (markerIds.length === 0) return; // No markers detected.
+          markers.forEach((marker) => {
+            // Use marker.object3D.visible as a basic check.
+            if (marker.object3D.visible) {
+              visibleMarkers.push(marker);
+            }
+          });
 
-        let avgPosition = new THREE.Vector3();
-        let avgQuaternion = new THREE.Quaternion();
-        let first = true;
+          if (visibleMarkers.length === 0) return; // No markers detected.
 
-        markerIds.forEach((id) => {
-          let mat = markerTransforms[id];
-          let pos = new THREE.Vector3();
-          let quat = new THREE.Quaternion();
-          let scale = new THREE.Vector3();
-          mat.decompose(pos, quat, scale);
+          // Initialize averaging containers.
+          let avgPosition = new THREE.Vector3();
+          let avgQuaternion = new THREE.Quaternion();
+          let count = 0;
 
-          avgPosition.add(pos);
-          if (first) {
-            avgQuaternion.copy(quat);
-            first = false;
-          } else {
-            // Using slerp to blend rotations.
-            avgQuaternion.slerp(quat, 1 / markerIds.length);
-          }
-        });
+          visibleMarkers.forEach((marker, idx) => {
+            const obj = marker.object3D;
+            // Ensure the matrixWorld is updated.
+            obj.updateMatrixWorld();
+            const pos = new THREE.Vector3();
+            const quat = new THREE.Quaternion();
+            const scale = new THREE.Vector3();
+            obj.matrixWorld.decompose(pos, quat, scale);
 
-        avgPosition.multiplyScalar(1 / markerIds.length);
+            avgPosition.add(pos);
+            if (count === 0) {
+              avgQuaternion.copy(quat);
+            } else {
+              // Slerp blend with current quaternion for smoother averaging.
+              avgQuaternion.slerp(quat, 1 / (count + 1));
+            }
+            count++;
+          });
 
-        // Update the container's position and orientation.
-        const boxAnchor = document.querySelector("#boxAnchor").object3D;
-        boxAnchor.position.copy(avgPosition);
-        boxAnchor.quaternion.copy(avgQuaternion);
-      }
+          avgPosition.multiplyScalar(1 / count);
 
-      // Add event listeners to update transforms when markers are found or lost.
-      document.querySelectorAll("a-marker").forEach((marker) => {
-        marker.addEventListener("markerFound", function () {
-          // Store the marker's current world matrix.
-          markerTransforms[marker.id] = marker.object3D.matrixWorld.clone();
-          updateBoxAnchor();
-        });
-        marker.addEventListener("markerLost", function () {
-          delete markerTransforms[marker.id];
-          updateBoxAnchor();
-        });
+          // Update the anchor entity's transformation.
+          this.el.object3D.position.copy(avgPosition);
+          this.el.object3D.quaternion.copy(avgQuaternion);
+        },
       });
     </script>
   </body>
