@@ -20,26 +20,28 @@
         smoothTolerance="0.01"
         smoothThreshold="2">
         <a-gltf-model
-          src="racing_track.gltf"
+          src="assets/racing_track.gltf"
           scale="1.5 1.5 1.5"
           position="0 -5 -0.5"
           rotation="0 90 0">
         </a-gltf-model>
       </a-marker>
 
-      <div class="d-pad" id="dPad">
-        <button id="forward-button" class="d-button">⬆</button>
-        <div class="d-row">
-          <button id="left-button" class="d-button">⬅</button>
-          <button id="backward-button" class="d-button">⬇</button>
-          <button id="right-button" class="d-button">➡</button>
-        </div>
-      </div>
-
-      <button id="stop-button">Stop</button>
+      
 
       <a-entity camera></a-entity>
     </a-scene>
+
+    <div class="d-pad" id="dPad">
+      <button id="forward-button" class="d-button">⬆</button>
+      <div class="d-row">
+        <button id="left-button" class="d-button">⬅</button>
+        <button id="backward-button" class="d-button">⬇</button>
+        <button id="right-button" class="d-button">➡</button>
+      </div>
+    </div>
+
+    <button id="stop-button">Stop</button>
 
   </body>
 </html>
