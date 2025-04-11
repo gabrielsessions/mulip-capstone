@@ -25,6 +25,7 @@ const msgs = {
 }
 
 marker.addEventListener("markerFound", function () {
+  console.log("FOUND!!")
   dPad.style.display = "flex";
   stopButton.style.display = "block";
 });
