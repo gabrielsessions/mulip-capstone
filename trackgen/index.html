@@ -3,97 +3,11 @@
   <head>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html, body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-      }
-
-      h1 {
-        color: white;
-        font-size: 1.5em;
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-      }
-
-      p {
-        color: white;
-        font-size: 1em;
-        position: absolute;
-        top: 50px;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-      }
-
-      .d-pad {
-        position: absolute;
-        bottom: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .d-row {
-        display: flex;
-        gap: 10px;
-      }
-
-      .d-button {
-        width: 60px;
-        height: 60px;
-        background-color: rgba(255, 255, 255, 0.6);
-        border: 2px solid white;
-        border-radius: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        color: black;
-        text-align: center;
-        line-height: 60px;
-        cursor: pointer;
-      }
-
-      .d-button:active {
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-
-      #stopButton {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-        background-color: rgba(255, 255, 255, 0.6);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 15px 30px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      #stopButton:active {
-        background-color: rgba(255, 255, 255, 0.6);
-      }
-    </style>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+    <script defer src="./dpad.js"></script>
+    
+    <link rel="stylesheet" href="./styles.css">
+      
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
@@ -114,34 +28,18 @@
       </a-marker>
 
       <div class="d-pad" id="dPad">
-        <div class="d-button">⬆</div>
+        <button id="forward-button" class="d-button">⬆</button>
         <div class="d-row">
-          <div class="d-button">⬅</div>
-          <div class="d-button">⬇</div>
-          <div class="d-button">➡</div>
+          <button id="left-button" class="d-button">⬅</button>
+          <button id="backward-button" class="d-button">⬇</button>
+          <button id="right-button" class="d-button">➡</button>
         </div>
       </div>
 
-      <button id="stopButton">Stop</button>
+      <button id="stop-button">Stop</button>
 
       <a-entity camera></a-entity>
     </a-scene>
 
-
-    <script>
-      const marker = document.querySelector("#marker");
-      const dPad = document.querySelector("#dPad");
-      const stopButton = document.querySelector("#stopButton");
-
-      marker.addEventListener("markerFound", function() {
-        dPad.style.display = "flex";
-        stopButton.style.display = "block";
-      });
-
-      marker.addEventListener("markerLost", function() {
-        dPad.style.display = "none";
-        stopButton.style.display = "none";
-      });
-    </script>
   </body>
 </html>
