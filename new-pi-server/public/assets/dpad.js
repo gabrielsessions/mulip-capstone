@@ -8,7 +8,7 @@ function sendAction(msg) {
 
 const marker = document.querySelector("#marker");
 const dPad = document.querySelector("#dPad");
-const stopButton = document.querySelector("#stopButton");
+const stopButton = document.querySelector("#stop-button");
 const buttons = {
   "forward": document.querySelector("#forward-button"),
   "backward": document.querySelector("#backward-button"),
