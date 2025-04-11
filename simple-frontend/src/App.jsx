@@ -74,15 +74,10 @@ function App() {
               <></>
           }
         </div>
-
         <WebSocketLog connected={WS !== undefined && WS !== null} log={messages} sendMessage={(message) => WS.send(message)} disconnect={() => {
           WS.close();
         }} />
-
-
-
       </div>
-
 
     </>
 

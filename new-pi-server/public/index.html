@@ -1,14 +1,47 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/assets/index-CMmfcttB.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CvwUSkDy.css">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+    <script defer src="assets/dpad.js"></script>
+    
+    <link rel="stylesheet" href="assets/index.css">
+      
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
+      <a-marker
+        id="marker"
+        type="pattern"
+        url="assets/pattern-marker_0.patt"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="2">
+        <a-gltf-model
+          src="assets/racing_track.gltf"
+          scale="1.5 1.5 1.5"
+          position="0 -5 -0.5"
+          rotation="0 90 0">
+        </a-gltf-model>
+      </a-marker>
+
+      
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <div class="d-pad" id="dPad">
+      <button id="forward-button" class="d-button">⬆</button>
+      <div class="d-row">
+        <button id="left-button" class="d-button">⬅</button>
+        <button id="backward-button" class="d-button">⬇</button>
+        <button id="right-button" class="d-button">➡</button>
+      </div>
+    </div>
+
+    <button id="stop-button">Stop</button>
+
   </body>
 </html>
