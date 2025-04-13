@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AR Racing Track</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
+  <script async src="https://cdn.jsdelivr.net/gh/huningxin/opencv.js@v1.3.0/build/opencv.js"></script>
+  <script defer src="./js/opencv-ar.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    h1, p {
+      color: white;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+    h1 {
+      top: 10px;
+      font-size: 1.5em;
+    }
+    p {
+      top: 50px;
+      font-size: 1em;
+    }
+    .d-pad {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .d-row {
+      display: flex;
+      gap: 10px;
+    }
+    .d-button {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border: 2px solid white;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+      text-align: center;
+      line-height: 60px;
+      cursor: pointer;
+    }
+    .d-button:active {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    #stopButton {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #stopButton:active {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>AR Racing Track</h1>
+  <p>Point your camera at the 4 ArUco markers!</p>
+
+  <a-scene embedded arjs="sourceType: webcam;">
+    <a-entity id="track" visible="false">
+      <a-gltf-model
+        src="./models/racing_track.gltf"
+        scale="1 1 1"
+        position="0 0 0"
+        rotation="0 0 0">
+      </a-gltf-model>
+    </a-entity>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <div class="d-pad" id="dPad">
+    <div class="d-button">⬆</div>
+    <div class="d-row">
+      <div class="d-button">⬅</div>
+      <div class="d-button">⬇</div>
+      <div class="d-button">➡</div>
+    </div>
+  </div>
+
+  <button id="stopButton">Stop</button>
+
+</body>
+</html>
