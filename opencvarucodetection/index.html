@@ -2,25 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>AR with js-aruco2 and Custom Dictionary</title>
+    <title>AR Racing Track</title>
     <!-- Load A-Frame -->
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- Load the computer vision library (cv.js) -->
     <script src="js/cv.js"></script>
-    <!-- Load the 4x4 dictionary file first -->
+    <!-- Load the custom 4x4 dictionary file (browser-adapted version) -->
     <script src="js/aruco_4x4_1000.js"></script>
-    <!-- Then load the main js-aruco2 library -->
+    <!-- Load the main js-aruco2 library -->
     <script src="js/aruco.js"></script>
 
     <style>
-      body,
-      html {
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
         width: 100%;
         height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         background: #000;
       }
-      /* Debug: Display video and canvas for marker detection */
+      h1,
+      p {
+        color: white;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+      }
+      h1 {
+        top: 10px;
+        font-size: 1.5em;
+      }
+      p {
+        top: 50px;
+        font-size: 1em;
+      }
+      /* For debugging, we show the video and canvas.
+         You may later hide these elements by setting display:none. */
       #video,
       #canvas {
         position: absolute;
@@ -31,24 +57,69 @@
         border: 2px solid red;
         z-index: 9999;
       }
+      /* D-Pad and stop button styles from your original project */
+      .d-pad {
+        position: absolute;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none; /* currently hidden; show if needed */
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .d-row {
+        display: flex;
+        gap: 10px;
+      }
+      .d-button {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.6);
+        border: 2px solid white;
+        border-radius: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+      }
+      .d-button:active {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+      #stopButton {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        background-color: rgba(255, 255, 255, 0.6);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      #stopButton:active {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
     </style>
 
-    <!-- Register our custom component AFTER loading dictionary and js-aruco2 -->
+    <!-- Define our custom A-Frame component -->
     <script>
-      // Confirm in the console that AR and the dictionary are loaded.
+      // Log to ensure AR and the dictionary are loaded
       console.log("AR object:", AR);
-      // Some versions of js-aruco2 automatically use the loaded dictionary.
-      // If your version requires explicit selection or parameters,
-      // you may need to pass options to AR.Detector (consult the documentation).
-
       AFRAME.registerComponent("aruco-detector", {
         init: function () {
-          // Obtain references to the video and canvas elements.
+          // Get references to the debug video and canvas.
           this.video = document.getElementById("video");
           this.canvas = document.getElementById("canvas");
           this.context = this.canvas.getContext("2d");
 
-          // Create an instance of the AR.Detector.
+          // Create an instance of the AR.Detector (which now uses our custom dictionary)
           try {
             this.detector = new AR.Detector();
             console.log("AR.Detector created:", this.detector);
@@ -56,10 +127,10 @@
             console.error("Error creating AR.Detector:", e);
           }
 
-          // Reference the entity representing your track (or model).
+          // Get a reference to the track entity (which contains the racing track model)
           this.trackEl = document.getElementById("track");
 
-          // Request camera access.
+          // Request camera access from the environment-facing camera.
           navigator.mediaDevices
             .getUserMedia({ video: { facingMode: "environment" } })
             .then((stream) => {
@@ -71,14 +142,12 @@
               console.error("Error accessing camera:", err);
             });
         },
-
         tick: function () {
           if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
-            // Update the canvas size to match the video dimensions.
+            // Set canvas dimensions to match the video
             this.canvas.width = this.video.videoWidth;
             this.canvas.height = this.video.videoHeight;
-
-            // Draw the current video frame onto the canvas.
+            // Draw the current video frame on the canvas
             this.context.drawImage(
               this.video,
               0,
@@ -86,47 +155,52 @@
               this.canvas.width,
               this.canvas.height
             );
-
-            // Get the image data from the canvas.
+            // Retrieve the image data from the canvas
             var imageData = this.context.getImageData(
               0,
               0,
               this.canvas.width,
               this.canvas.height
             );
-
-            // Run the marker detection using the custom dictionary.
+            // Run marker detection (using our custom dictionary)
             var markers = this.detector.detect(imageData);
             console.log("Markers detected:", markers.length);
 
             if (markers.length > 0) {
-              // For simplicity, use the first detected marker.
-              var marker = markers[0];
-              var corners = marker.corners;
-              var cx = 0,
-                cy = 0;
-              for (var i = 0; i < corners.length; i++) {
-                cx += corners[i].x;
-                cy += corners[i].y;
+              // Instead of using one marker, average the center positions of all detected markers.
+              var sumX = 0,
+                sumY = 0;
+              for (var m = 0; m < markers.length; m++) {
+                var corners = markers[m].corners;
+                var markerCx = 0,
+                  markerCy = 0;
+                for (var i = 0; i < corners.length; i++) {
+                  markerCx += corners[i].x;
+                  markerCy += corners[i].y;
+                }
+                markerCx /= corners.length;
+                markerCy /= corners.length;
+                sumX += markerCx;
+                sumY += markerCy;
               }
-              cx /= corners.length;
-              cy /= corners.length;
-              console.log("Marker center (2D):", cx, cy);
+              var avgX = sumX / markers.length;
+              var avgY = sumY / markers.length;
+              console.log("Average marker center (2D):", avgX, avgY);
 
               // Show the track entity.
               this.trackEl.setAttribute("visible", "true");
 
-              // Map the 2D coordinates to a simple 3D space.
-              // Note: This mapping is highly simplified and may need calibration.
-              var x = (cx / this.canvas.width - 0.5) * 2; // normalized to [-1,1]
-              var y = (cy / this.canvas.height - 0.5) * -2; // inverted y-axis
-              var z = -2; // fixed Z distance; adjust per your scene's configuration
+              // Map the average 2D marker position to 3D coordinates.
+              // (This mapping is simplified; adjust the multipliers and z-distance for your scene.)
+              var x = (avgX / this.canvas.width - 0.5) * 2; // normalized to [-1,1]
+              var y = (avgY / this.canvas.height - 0.5) * -2; // inverted y-axis
+              var z = -2; // fixed distance from the camera—adjust as needed
               console.log("Mapped 3D position:", x, y, z);
 
-              // Update the position of the track entity.
+              // Update the 3D position of the track entity.
               this.trackEl.object3D.position.set(x, y, z);
             } else {
-              // Hide the track entity if no markers are found.
+              // Hide the track if no markers are detected.
               this.trackEl.setAttribute("visible", "false");
             }
           }
@@ -134,19 +208,36 @@
       });
     </script>
   </head>
+
   <body>
-    <!-- Visible video and canvas for debugging -->
+    <h1>AR Racing Track</h1>
+    <p>Point your camera at the 4 ArUco markers!</p>
+    <!-- Debug video and canvas elements -->
     <video id="video" autoplay playsinline></video>
     <canvas id="canvas"></canvas>
-
     <!-- A-Frame scene that uses our custom aruco-detector component -->
-    <a-scene aruco-detector>
-      <!-- The track (or model) entity that you want to display -->
+    <a-scene embedded aruco-detector>
+      <!-- The track entity now contains your racing track glTF model -->
       <a-entity id="track" visible="false">
-        <!-- For testing, we use a simple orange box; replace with your glTF model if desired -->
-        <a-box color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+        <a-gltf-model
+          src="./models/racing_track.gltf"
+          scale="1 1 1"
+          position="0 0 0"
+          rotation="0 0 0"
+        >
+        </a-gltf-model>
       </a-entity>
       <a-entity camera></a-entity>
     </a-scene>
+    <!-- (Optional) D-Pad and Stop Button overlays (currently hidden) -->
+    <div class="d-pad" id="dPad">
+      <div class="d-button">⬆</div>
+      <div class="d-row">
+        <div class="d-button">⬅</div>
+        <div class="d-button">⬇</div>
+        <div class="d-button">➡</div>
+      </div>
+    </div>
+    <button id="stopButton">Stop</button>
   </body>
 </html>
