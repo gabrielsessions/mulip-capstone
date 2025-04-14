@@ -6,14 +6,14 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '/cozmo_ros2_ws/src/cozmo_ros2_nosdk/cozmo_ros2_nosdk/')))
 
-from teleop_twist_web_prime import TeleopTwistWeb
+from teleop_twist_web_prime import TeleopTwistWeb, JoystickTeleop
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 socketio = SocketIO(app, cors_allowed_origins="*", supports_credentials=True)
 
 CORS(app, supports_credentials=True)
 
-cozmoCtrl = TeleopTwistWeb()
+cozmoCtrl = JoystickTeleop()
 
 
 @app.route('/')

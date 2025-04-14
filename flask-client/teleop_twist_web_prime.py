@@ -49,3 +49,39 @@ class TeleopTwistWeb:
         self.pub.publish(Twist())
         self.node.destroy_node()
         rclpy.shutdown()
+
+
+class JoystickTeleop:
+    def __init__(self):
+        rclpy.init()
+        self.node = rclpy.create_node(node_name='joystick_teleop', namespace='cozmo')
+        self.pub = self.node.create_publisher(Twist, 'cmd_vel', 1)
+
+        # Max speeds
+        self.linear_speed = 0.2    # m/s
+        self.angular_speed = 1.0   # rad/s
+
+        self.current_x = 0.0  # Joystick forward/back
+        self.current_y = 0.0  # Joystick left/right
+
+    def update_joystick(self, x: float, y: float):
+        """
+        Update joystick position and publish Twist command.
+        :param x: Forward/backward [-1.0, 1.0]
+        :param y: Left/right [-1.0, 1.0]
+        """
+        self.current_x = x
+        self.current_y = y
+
+        twist = Twist()
+        twist.linear.x = self.current_y * self.linear_speed   # y = forward/backward
+        twist.angular.z = -self.current_x * self.angular_speed  # x = left/right rotation
+
+        self.pub.publish(twist)
+        self.node.get_logger().info(f'Sent cmd_vel: linear.x={twist.linear.x:.2f}, angular.z={twist.angular.z:.2f}')
+
+    def shutdown(self):
+        self.pub.publish(Twist())  # Stop robot
+        self.node.destroy_node()
+        rclpy.shutdown()
+
