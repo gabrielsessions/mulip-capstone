@@ -1,122 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>AR Racing Track</title>
-  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-  <script async src="https://cdn.jsdelivr.net/gh/huningxin/opencv.js@v1.3.0/build/opencv.js"></script>
-  <script defer src="./js/opencv-ar.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AR with js-aruco2 and Custom Dictionary</title>
+    <!-- Load A-Frame -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="js/cv.js"></script>
+    <!-- Load the 4x4 dictionary file first -->
+    <script src="js/aruco_4x4_1000.js"></script>
+    <!-- Then load the main js-aruco2 library -->
+    <script src="js/aruco.js"></script>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    h1, p {
-      color: white;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      z-index: 10;
-    }
-    h1 {
-      top: 10px;
-      font-size: 1.5em;
-    }
-    p {
-      top: 50px;
-      font-size: 1em;
-    }
-    .d-pad {
-      position: absolute;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .d-row {
-      display: flex;
-      gap: 10px;
-    }
-    .d-button {
-      width: 60px;
-      height: 60px;
-      background-color: rgba(255, 255, 255, 0.6);
-      border: 2px solid white;
-      border-radius: 10px;
-      font-size: 20px;
-      font-weight: bold;
-      color: black;
-      text-align: center;
-      line-height: 60px;
-      cursor: pointer;
-    }
-    .d-button:active {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-    #stopButton {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      background-color: rgba(255, 255, 255, 0.6);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    #stopButton:active {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-  </style>
-</head>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+      }
+      /* Debug: Display video and canvas for marker detection */
+      #video,
+      #canvas {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 320px;
+        height: 240px;
+        border: 2px solid red;
+        z-index: 9999;
+      }
+    </style>
 
-<body>
+    <!-- Register our custom component AFTER loading dictionary and js-aruco2 -->
+    <script>
+      // Confirm in the console that AR and the dictionary are loaded.
+      console.log("AR object:", AR);
+      // Some versions of js-aruco2 automatically use the loaded dictionary.
+      // If your version requires explicit selection or parameters,
+      // you may need to pass options to AR.Detector (consult the documentation).
 
-  <h1>AR Racing Track</h1>
-  <p>Point your camera at the 4 ArUco markers!</p>
+      AFRAME.registerComponent("aruco-detector", {
+        init: function () {
+          // Obtain references to the video and canvas elements.
+          this.video = document.getElementById("video");
+          this.canvas = document.getElementById("canvas");
+          this.context = this.canvas.getContext("2d");
 
-  <a-scene embedded arjs="sourceType: webcam;">
-    <a-entity id="track" visible="false">
-      <a-gltf-model
-        src="./models/racing_track.gltf"
-        scale="1 1 1"
-        position="0 0 0"
-        rotation="0 0 0">
-      </a-gltf-model>
-    </a-entity>
+          // Create an instance of the AR.Detector.
+          try {
+            this.detector = new AR.Detector();
+            console.log("AR.Detector created:", this.detector);
+          } catch (e) {
+            console.error("Error creating AR.Detector:", e);
+          }
 
-    <a-entity camera></a-entity>
-  </a-scene>
+          // Reference the entity representing your track (or model).
+          this.trackEl = document.getElementById("track");
 
-  <div class="d-pad" id="dPad">
-    <div class="d-button">⬆</div>
-    <div class="d-row">
-      <div class="d-button">⬅</div>
-      <div class="d-button">⬇</div>
-      <div class="d-button">➡</div>
-    </div>
-  </div>
+          // Request camera access.
+          navigator.mediaDevices
+            .getUserMedia({ video: { facingMode: "environment" } })
+            .then((stream) => {
+              this.video.srcObject = stream;
+              this.video.play();
+              console.log("Camera stream started");
+            })
+            .catch((err) => {
+              console.error("Error accessing camera:", err);
+            });
+        },
 
-  <button id="stopButton">Stop</button>
+        tick: function () {
+          if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
+            // Update the canvas size to match the video dimensions.
+            this.canvas.width = this.video.videoWidth;
+            this.canvas.height = this.video.videoHeight;
 
-</body>
+            // Draw the current video frame onto the canvas.
+            this.context.drawImage(
+              this.video,
+              0,
+              0,
+              this.canvas.width,
+              this.canvas.height
+            );
+
+            // Get the image data from the canvas.
+            var imageData = this.context.getImageData(
+              0,
+              0,
+              this.canvas.width,
+              this.canvas.height
+            );
+
+            // Run the marker detection using the custom dictionary.
+            var markers = this.detector.detect(imageData);
+            console.log("Markers detected:", markers.length);
+
+            if (markers.length > 0) {
+              // For simplicity, use the first detected marker.
+              var marker = markers[0];
+              var corners = marker.corners;
+              var cx = 0,
+                cy = 0;
+              for (var i = 0; i < corners.length; i++) {
+                cx += corners[i].x;
+                cy += corners[i].y;
+              }
+              cx /= corners.length;
+              cy /= corners.length;
+              console.log("Marker center (2D):", cx, cy);
+
+              // Show the track entity.
+              this.trackEl.setAttribute("visible", "true");
+
+              // Map the 2D coordinates to a simple 3D space.
+              // Note: This mapping is highly simplified and may need calibration.
+              var x = (cx / this.canvas.width - 0.5) * 2; // normalized to [-1,1]
+              var y = (cy / this.canvas.height - 0.5) * -2; // inverted y-axis
+              var z = -2; // fixed Z distance; adjust per your scene's configuration
+              console.log("Mapped 3D position:", x, y, z);
+
+              // Update the position of the track entity.
+              this.trackEl.object3D.position.set(x, y, z);
+            } else {
+              // Hide the track entity if no markers are found.
+              this.trackEl.setAttribute("visible", "false");
+            }
+          }
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Visible video and canvas for debugging -->
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+
+    <!-- A-Frame scene that uses our custom aruco-detector component -->
+    <a-scene aruco-detector>
+      <!-- The track (or model) entity that you want to display -->
+      <a-entity id="track" visible="false">
+        <!-- For testing, we use a simple orange box; replace with your glTF model if desired -->
+        <a-box color="orange" width="0.5" height="0.5" depth="0.5"></a-box>
+      </a-entity>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
