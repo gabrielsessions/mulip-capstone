@@ -2,6 +2,11 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const path = require("path");
+const fs = require('fs');
+const crypto = require('crypto');
+const postgres = require('postgres');
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
@@ -12,18 +17,97 @@ const io = new Server(server, {
   }
 });
 
+if (!process.env.NEON_CONNECTION) {
+  console.error("NEON_CONNECTION environment variables not set")
+  process.exit(1);
+}
+
+const sql = postgres(process.env.NEON_CONNECTION);
+
+let privateKey;
+try {
+  privateKey = fs.readFileSync('private-key.pem', 'utf8');
+} catch (err) {
+  console.error("An error occurred:", err);
+  process.exit(1);
+}
+
+if (!privateKey) {
+  console.error("Fatal Error: No private key");
+  process.exit(1);
+}
+
+
+function generateJWT() {
+  // Assumes no collisions between UUIDs, add checks if needed
+  const uuid = crypto.randomUUID();
+
+  const payload = {
+    userID: uuid,
+    firstConnection: Date.now()
+  }
+  const options = {
+    expiresIn: '365d', // Token expires in 1 year
+    issuer: 'cozmokart'
+  };
+  const token = jwt.sign(payload, privateKey, options);
+  return token;
+}
+
+function decodeToken(token, socketID) {
+  if (!token)
+    return null;
+
+  try {
+    const decodedToken = jwt.verify(token, privateKey);
+    socketID_JWT.set(socketID, decodedToken.userID);
+  }
+  catch (err) {
+    console.error(err);
+    return;
+  }
+}
+
+async function saveData(socketID, action) {
+  const userID = socketID_JWT.get(socketID);
+  try {
+    const timestamp = await sql`insert into cozmokart (timestamp, user_id, action) values(NOW(), ${userID}, ${action}) returning timestamp;`
+  }
+  catch (err) {
+    console.error(err);
+  }
+}
+
+const socketID_JWT = new Map();
+
 // Serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
 io.on("connection", (socket) => {
   console.log(`A user connected: ${socket.id}`);
-  
+
   socket.on("message", (data) => {
-    console.log(`Message from ${socket.id}:`, data);
-    io.emit("message", data); // Broadcast to all clients
+    if (data.startsWith("token ")) {
+      decodeToken(data.split("token ")[1], socket.id);
+    }
+    else if (data === "new connection") {
+      const newToken = generateJWT();
+      socketID_JWT.set(socket.id, newToken);
+      io.send(newToken);
+    }
+    else if (data) {
+      if (socketID_JWT.has(socket.id)) {
+        saveData(socket.id, data);
+      }
+      console.log(`Message from ${socket.id}:`, data);
+      io.emit("message", data); // Broadcast to all clients
+    }
   });
 
   socket.on("disconnect", () => {
+    if (socketID_JWT.has(socket.id)) {
+      socketID_JWT.delete(socket.id);
+    }
     console.log(`User disconnected: ${socket.id}`);
   });
 });
