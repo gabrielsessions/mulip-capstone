@@ -101,6 +101,7 @@ io.on("connection", (socket) => {
       setTimeout(() => {
         blockMsgs = false;
       }, 500);
+      console.log("STOP -- COLLISION")
     }
     else if (data && !blockMsgs) {
       if (socketID_JWT.has(socket.id)) {
