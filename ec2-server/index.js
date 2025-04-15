@@ -78,6 +78,16 @@ async function saveData(socketID, action) {
   }
 }
 
+async function recordLap(lapNumber) {
+  try {
+    const timestamp = await sql`insert into cozmokart_laps (timestamp, lap_number) values(NOW(), ${lapNumber}) returning timestamp;`
+  }
+  catch (err) {
+    console.error(err);
+  }
+
+}
+
 const socketID_JWT = new Map();
 
 // Serve static files from 'public' directory
@@ -89,6 +99,12 @@ io.on("connection", (socket) => {
   socket.on("message", (data) => {
     if (data.startsWith("token ")) {
       decodeToken(data.split("token ")[1], socket.id);
+    }
+    // Format: Lap #
+    else if (data.startsWith("lap ")) {
+      const lapNum = data.split(" ")[1];
+      if (parseInt(lapNum))
+        recordLap(parseInt(lapNum));
     }
     else if (data === "new connection") {
       const newToken = generateJWT();
