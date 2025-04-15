@@ -83,6 +83,7 @@ const socketID_JWT = new Map();
 // Serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
+let blockMsgs = false;
 io.on("connection", (socket) => {
   console.log(`A user connected: ${socket.id}`);
 
@@ -95,7 +96,13 @@ io.on("connection", (socket) => {
       socketID_JWT.set(socket.id, newToken);
       io.send(newToken);
     }
-    else if (data) {
+    else if (data === "stop_up" && !blockMsgs) {
+      blockMsgs = true;
+      setTimeout(() => {
+        blockMsgs = false;
+      }, 500);
+    }
+    else if (data && !blockMsgs) {
       if (socketID_JWT.has(socket.id)) {
         saveData(socket.id, data);
       }
