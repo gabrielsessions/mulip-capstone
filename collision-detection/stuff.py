@@ -6,7 +6,8 @@ import time
 # Create Socketio client
 connection = socketio.Client()
 print("Starting Socket.io")
-connection.connect("http://10.243.89.243")
+connection.connect("https://cozmokart.site")
+
 connection.send("lap 1")
 
 # Start a timer
@@ -99,7 +100,6 @@ while True:
                 if (not checkpoints[1]):
                     print("Checkpoint 2 active!")
                 checkpoints[1] = True
-                
             
 
             if inside_inner or outside_outer:

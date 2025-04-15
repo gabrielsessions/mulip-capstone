@@ -1,0 +1,39 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #000000;
+}
+
+#joystick-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: rgba(221, 221, 221, 0.5);
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+#joystick {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  cursor: grab;
+}
+
+#output {
+  position: absolute;
+  top: 220px;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  width: 100%;
+}
