@@ -101,7 +101,7 @@ io.on("connection", (socket) => {
       setTimeout(() => {
         blockMsgs = false;
       }, 500);
-      io.emit("X: 0.0, Y: 0.0")
+      io.emit("message", "X:0, Y:0")
       console.log("STOP -- COLLISION")
     }
     else if (data && !blockMsgs) {
