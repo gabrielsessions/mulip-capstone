@@ -100,7 +100,7 @@ joystick.addEventListener('pointermove', (e) => {
   updateJoystickPosition(e.clientX, e.clientY);
 });
 
-joystick.addEventListener('pointerup', (e) => {
+joystick.addEventListener('mouseup', (e) => {
   dragging = false;
   resetJoystick();
 });
