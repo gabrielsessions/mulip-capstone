@@ -78,6 +78,8 @@ async function saveData(socketID, action) {
   }
 }
 
+
+=======
 async function recordLap(lapNumber) {
   try {
     const timestamp = await sql`insert into cozmokart_laps (timestamp, lap_number) values(NOW(), ${lapNumber}) returning timestamp;`
@@ -93,6 +95,7 @@ const socketID_JWT = new Map();
 // Serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
+let blockMsgs = false;
 io.on("connection", (socket) => {
   console.log(`A user connected: ${socket.id}`);
 
@@ -100,18 +103,30 @@ io.on("connection", (socket) => {
     if (data.startsWith("token ")) {
       decodeToken(data.split("token ")[1], socket.id);
     }
+
     // Format: Lap #
     else if (data.startsWith("lap ")) {
       const lapNum = data.split(" ")[1];
       if (parseInt(lapNum))
         recordLap(parseInt(lapNum));
     }
+
     else if (data === "new connection") {
       const newToken = generateJWT();
       socketID_JWT.set(socket.id, newToken);
       io.send(newToken);
     }
-    else if (data) {
+
+    else if (data === "stop_up" && !blockMsgs) {
+      blockMsgs = true;
+      setTimeout(() => {
+        blockMsgs = false;
+      }, 500);
+      io.emit("message", "X:0, Y:0")
+      console.log("STOP -- COLLISION")
+    }
+    
+    else if (data && !blockMsgs) {
       if (socketID_JWT.has(socket.id)) {
         saveData(socket.id, data);
       }

@@ -1,7 +1,5 @@
-import cv2
 import numpy as np
-import socketio
-import time
+import cv2, socketio, random, time
 
 # Create Socketio client
 connection = socketio.Client()
@@ -105,6 +103,7 @@ while True:
             if inside_inner or outside_outer:
                 valid_contours.append(cnt)
                 count += 1
+                print("COLLISION" + str(random.random() * 10))
                 connection.send("stop_up") # Stop robot
                 
                 break  # If any point of the contour is valid, keep the whole contour

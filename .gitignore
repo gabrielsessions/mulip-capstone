@@ -4,5 +4,4 @@ tensorflow-test-react
 .env
 
 private-key.pem
-public-key.pem
 node_modules

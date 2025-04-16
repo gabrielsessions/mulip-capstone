@@ -4,7 +4,6 @@ const socket = io('https://cozmokart.site', {
 
 function sendAction(msg) {
   console.log(msg);
-  console.log(socket);
   socket.send(msg);
 }
 
@@ -29,7 +28,7 @@ function scheduleJoystickLog(x, y) {
   if (debounceTimer) clearTimeout(debounceTimer);
 
   debounceTimer = setTimeout(() => {
-    // Round to nearest 0.2 step
+    // Round to nearest 0.1 step
     const step = 0.1;
     const roundedX = Math.round(x / step) * step;
     const roundedY = Math.round(y / step) * step;
@@ -44,7 +43,7 @@ function scheduleJoystickLog(x, y) {
       lastLoggedX = cleanX;
       lastLoggedY = cleanY;
     }
-  }, 20); // time (in ms) after motion stops before logging
+  }, 1); // time (in ms) after motion stops before logging
 }
 
 function updateJoystickPosition(clientX, clientY) {

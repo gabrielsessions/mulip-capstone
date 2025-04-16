@@ -54,7 +54,6 @@ window.onload = () => {
   });
 
   buttons.forEach(id => {
-    console.log("STUUDIYOUGKHGSDTIYI OIUGYWDLUIHGHBJ:", id);
     document.getElementById(id).addEventListener('click', () => {
         console.log("Button clicked: ", id);
         socket.send(id);
