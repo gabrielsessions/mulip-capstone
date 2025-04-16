@@ -88,12 +88,15 @@ io.on("connection", (socket) => {
   console.log(`A user connected: ${socket.id}`);
 
   socket.on("message", (data) => {
+    if (data === "status") {
+      io.send("NumClients: " + socketID_JWT.size);
+    }
     if (data.startsWith("token ")) {
       decodeToken(data.split("token ")[1], socket.id);
     }
     else if (data === "new connection") {
       const newToken = generateJWT();
-      socketID_JWT.set(socket.id, newToken);
+      //socketID_JWT.set(socket.id, newToken);
       io.send(newToken);
     }
     else if (data === "stop_up" && !blockMsgs) {
