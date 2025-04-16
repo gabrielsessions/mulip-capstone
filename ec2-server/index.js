@@ -79,7 +79,6 @@ async function saveData(socketID, action) {
 }
 
 
-=======
 async function recordLap(lapNumber) {
   try {
     const timestamp = await sql`insert into cozmokart_laps (timestamp, lap_number) values(NOW(), ${lapNumber}) returning timestamp;`
