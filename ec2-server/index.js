@@ -89,7 +89,7 @@ io.on("connection", (socket) => {
 
   socket.on("message", (data) => {
     if (data === "status") {
-      io.send("NumClients: " + socketID_JWT.size);
+      io.send("clients: " + socketID_JWT.size);
     }
     if (data.startsWith("token ")) {
       decodeToken(data.split("token ")[1], socket.id);
