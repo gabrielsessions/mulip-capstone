@@ -1,47 +1,117 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/dev/aframe/build/aframe-ar.js"></script>
-    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
-    <script defer src="assets/dpad.js"></script>
-    
-    <link rel="stylesheet" href="assets/index.css">
-      
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; trackingMethod: best;">
-      <a-marker
-        id="marker"
-        type="pattern"
-        url="assets/pattern-marker_0.patt"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance="0.01"
-        smoothThreshold="2">
-        <a-gltf-model
-          src="assets/racing_track.gltf"
-          scale="1.5 1.5 1.5"
-          position="0 -5 -0.5"
-          rotation="0 90 0">
-        </a-gltf-model>
-      </a-marker>
+<html lang="en">
 
-      
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CozmoKart - Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
 
-      <a-entity camera></a-entity>
-    </a-scene>
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
 
-    <div class="d-pad" id="dPad">
-      <button id="forward-button" class="d-button">⬆</button>
-      <div class="d-row">
-        <button id="left-button" class="d-button">⬅</button>
-        <button id="backward-button" class="d-button">⬇</button>
-        <button id="right-button" class="d-button">➡</button>
-      </div>
+    @media only screen and (max-width: 600px) {
+      .container {
+        margin: 10px 10px;
+      }
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .terms {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .terms input {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    #enableSensorsText {
+      font-weight: 700;
+      color:red;
+      text-decoration: underline;
+      display: inline;
+    }
+
+    #welcome-image {
+      max-height: 250px;
+      width: auto;
+      /* Maintain aspect ratio */
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to CozmoKart!</h1>
+    <img src="assets/qr_background.jpg" alt="CozmoKart Racing Game" id="welcome-image" height="50px">
+    <div class="terms">
+      <label>
+        <input type="checkbox" id="termsCheckbox">
+        I accept that my robot control actions and game progress on this website will be logged and used for EE 98 data
+        collection purposes. Video/camera data will <span style="font-style: italic;">NOT</span> be collected.
+      </label>
+      <br><br>
+      <label>
+        <input type="checkbox" id="enableSensorsCheckbox">
+        <p id="enableSensorsText">I understand that CozmoKart will need to access to this device's camera and motion
+          sensors.</p>
+      </label>
     </div>
+    <button id="nextButton" disabled>Next</button>
+  </div>
 
-    <button id="stop-button">Stop</button>
+  <script>
+    const termsCheckbox = document.getElementById('termsCheckbox');
+    const nextButton = document.getElementById('nextButton');
+    const enableSensorsCheckbox = document.getElementById('enableSensorsCheckbox');
 
-  </body>
+    termsCheckbox.addEventListener('change', () => {
+      nextButton.disabled = !termsCheckbox.checked || !enableSensorsCheckbox.checked;
+    });
+
+    enableSensorsCheckbox.addEventListener('change', () => {
+      nextButton.disabled = !termsCheckbox.checked || !enableSensorsCheckbox.checked;
+    });
+  </script>
+</body>
+
 </html>
