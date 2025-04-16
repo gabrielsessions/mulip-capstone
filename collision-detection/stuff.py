@@ -5,6 +5,7 @@ import cv2, socketio, random, time
 connection = socketio.Client()
 print("Starting Socket.io")
 connection.connect("https://cozmokart.site")
+
 connection.send("lap 1")
 
 # Start a timer
