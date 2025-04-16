@@ -29,7 +29,7 @@ function scheduleJoystickLog(x, y) {
 
   debounceTimer = setTimeout(() => {
     // Round to nearest 0.1 step
-    const step = 0.05;
+    const step = 0.1;
     const roundedX = Math.round(x / step) * step;
     const roundedY = Math.round(y / step) * step;
 
@@ -43,7 +43,7 @@ function scheduleJoystickLog(x, y) {
       lastLoggedX = cleanX;
       lastLoggedY = cleanY;
     }
-  }, 10); // time (in ms) after motion stops before logging
+  }, 1); // time (in ms) after motion stops before logging
 }
 
 function updateJoystickPosition(clientX, clientY) {
