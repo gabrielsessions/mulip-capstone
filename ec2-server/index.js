@@ -100,6 +100,9 @@ io.on("connection", (socket) => {
   console.log(`A user connected: ${socket.id}`);
 
   socket.on("message", (data) => {
+    if (data === "status") {
+      io.send("clients: " + socketID_JWT.size);
+    }
     if (data.startsWith("token ")) {
       decodeToken(data.split("token ")[1], socket.id);
     }
@@ -113,7 +116,7 @@ io.on("connection", (socket) => {
 
     else if (data === "new connection") {
       const newToken = generateJWT();
-      socketID_JWT.set(socket.id, newToken);
+      //socketID_JWT.set(socket.id, newToken);
       io.send(newToken);
     }
 
