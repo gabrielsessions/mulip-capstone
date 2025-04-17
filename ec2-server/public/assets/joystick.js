@@ -99,4 +99,32 @@ joystick.addEventListener('pointerup', (e) => {
   resetJoystick();
 });
 
+socket.on('connect', (data) => {
+  console.log('Connected to server');
+  const tokenFetch = localStorage.getItem('token');
+  if (tokenFetch === null) {
+    console.log("No token found, generating new one");
+    socket.send("new connection");
+  }
+  else {
+    console.log(`Token found: ${tokenFetch}`);
+    socket.send(`token ${tokenFetch}`);
+  }
+});
+
+socket.on('message', (data) => {
+  console.log(data);
+  if (data.startsWith("token ")) {
+    const token = data.split("token ")[1];
+    localStorage.setItem('token', token);
+    console.log(`Token received: ${token}`);
+  }
+  else if (data.startsWith("clients: ")) {
+    const numClients = data.split("clients: ")[1];
+    console.log(`Number of clients connected: ${numClients}`);
+  }
+  else {
+    console.log(`Message from server: ${data}`);
+  }
+});
 

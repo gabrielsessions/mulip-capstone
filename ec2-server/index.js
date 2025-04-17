@@ -116,7 +116,7 @@ io.on("connection", (socket) => {
     else if (data === "new connection") {
       const newToken = generateJWT();
       //socketID_JWT.set(socket.id, newToken);
-      io.send(newToken);
+      io.send(`token ${newToken}`);
     }
 
     else if (data === "stop_up" && !blockMsgs) {
