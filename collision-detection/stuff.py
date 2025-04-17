@@ -6,7 +6,9 @@ import time
 # Create Socketio client
 connection = socketio.Client()
 print("Starting Socket.io")
-connection.connect("http://10.243.89.243")
+connection.connect("https://cozmokart.site")
+
+connection.send("lap 1")
 
 # Start a timer
 start_time = time.time()
@@ -83,6 +85,7 @@ while True:
             # Check if checkpoints are hit, increment lap count if all are hit and at goal
             if x > 310 and x < 330 and y < height // 2 - 20 and all(checkpoints):
                 lapNumber += 1
+                connection.send("lap " + str(lapNumber))
                 checkpoints = [False, False, False]
                 print("Lap Complete!")
             elif x > 480 and y > 200 and y < 280:
@@ -97,7 +100,6 @@ while True:
                 if (not checkpoints[1]):
                     print("Checkpoint 2 active!")
                 checkpoints[1] = True
-                
             
 
             if inside_inner or outside_outer:

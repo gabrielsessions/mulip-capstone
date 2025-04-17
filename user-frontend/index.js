@@ -1,3 +1,14 @@
+const socket = io('https://cozmokart.site', {
+  transports: ['websocket'],
+});
+
+function sendAction(msg) {
+  console.log(msg);
+  console.log(socket);
+  socket.send(msg);
+}
+
+
 const joystick = document.getElementById('joystick');
 const container = document.getElementById('joystick-container');
 const output = document.getElementById('output');
@@ -19,7 +30,7 @@ function scheduleJoystickLog(x, y) {
 
   debounceTimer = setTimeout(() => {
     // Round to nearest 0.2 step
-    const step = 0.2;
+    const step = 0.1;
     const roundedX = Math.round(x / step) * step;
     const roundedY = Math.round(y / step) * step;
 
@@ -28,11 +39,12 @@ function scheduleJoystickLog(x, y) {
 
     // Only log if changed from last logged value
     if (cleanX !== lastLoggedX || cleanY !== lastLoggedY) {
+      sendAction(`X: ${cleanX}, Y: ${cleanY}`)
       console.log(`Joystick HOLD -> X: ${cleanX}, Y: ${cleanY}`);
       lastLoggedX = cleanX;
       lastLoggedY = cleanY;
     }
-  }, 50); // time (in ms) after motion stops before logging
+  }, 20); // time (in ms) after motion stops before logging
 }
 
 function updateJoystickPosition(clientX, clientY) {
@@ -72,6 +84,7 @@ function resetJoystick() {
   line.setAttribute('y2', centerY);
 
   // Immediately log reset to center
+  sendAction(`X: 0.0, Y: 0.0`);
   console.log(`Joystick RESET -> X: 0.0, Y: 0.0`);
   lastLoggedX = 0;
   lastLoggedY = 0;
@@ -92,3 +105,5 @@ joystick.addEventListener('pointerup', (e) => {
   dragging = false;
   resetJoystick();
 });
+
+
