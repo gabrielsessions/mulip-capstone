@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CozmoKart - Welcome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .container {
+        margin: 10px;
+      }
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .terms {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .terms input {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    #enableSensorsText {
+      font-weight: 700;
+      color: red;
+      text-decoration: underline;
+      display: inline;
+    }
+
+    #welcome-image {
+      max-height: 250px;
+      width: auto;
+      /* Maintain aspect ratio */
+      border-radius: 8px;
+    }
+  </style>
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js" integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to CozmoKart!</h1>
+    <div id="welcome-content">
+      <img src="assets/qr_background.jpg" alt="CozmoKart Racing Game" id="welcome-image" height="50px">
+      <div class="terms">
+        <label>
+          <input type="checkbox" id="termsCheckbox">
+          I accept that my robot control actions and game progress on this website will be logged and used for EE 98
+          data
+          collection purposes. Video/camera data will <span style="font-style: italic;">NOT</span> be collected.
+        </label>
+        <br><br>
+        <label>
+          <input type="checkbox" id="enableSensorsCheckbox">
+          <p id="enableSensorsText">I understand that CozmoKart will need to access to this device's camera and motion
+            sensors.</p>
+        </label>
+      </div>
+      <button id="nextButton" disabled>Next</button>
+    </div>
+    <div id="systemCheck" style="margin-top: 20px; text-align: left; display: none;">
+      <h3>System Check</h3>
+      <p id="cameraStatus">Camera Access: <span style="color: gray;">Checking...</span></p>
+      <p id="orientationStatus">Orientation Controls: <span style="color: gray;">Checking...</span></p>
+
+      <h3>Game Status</h3>
+      <p id="serverStatus">CozmoKart Server Status: <span style="color: gray;">Checking...</span></p>
+
+      <button id="startGameButton" disabled style="margin-top: 20px;">Start Game</button>
+    </div>
+
+    <script>
+      const termsCheckbox = document.getElementById('termsCheckbox');
+      const nextButton = document.getElementById('nextButton');
+      const enableSensorsCheckbox = document.getElementById('enableSensorsCheckbox');
+      const cameraStatus = document.getElementById('cameraStatus');
+      const orientationStatus = document.getElementById('orientationStatus');
+      const serverStatus = document.getElementById('serverStatus');
+      const startGameButton = document.getElementById('startGameButton');
+
+      termsCheckbox.addEventListener('change', () => {
+        nextButton.disabled = !termsCheckbox.checked || !enableSensorsCheckbox.checked;
+      });
+
+      enableSensorsCheckbox.addEventListener('change', () => {
+        nextButton.disabled = !termsCheckbox.checked || !enableSensorsCheckbox.checked;
+      });
+
+      nextButton.addEventListener('click', () => {
+        // Check for camera access
+        document.getElementById('welcome-content').style.display = 'none';
+        document.getElementById('systemCheck').style.display = 'block';
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(() => {
+            cameraStatus.innerHTML = 'Camera Access: <span style="color: green;">Available</span>';
+            checkAllGreen();
+          })
+          .catch(() => {
+            cameraStatus.innerHTML = 'Camera Access: <span style="color: red;">Unavailable</span>';
+            checkAllGreen();
+          });
+
+        // Check for orientation controls
+        if ('DeviceOrientationEvent' in window) {
+          orientationStatus.innerHTML = 'Orientation Controls: <span style="color: green;">Available</span>';
+        } else {
+          orientationStatus.innerHTML = 'Orientation Controls: <span style="color: red;">Unavailable</span>';
+        }
+        checkAllGreen();
+
+        // Check server status
+        let pollServer = null;
+        const socket = io('/', { transports: ['websocket'] });
+
+        socket.on('connect', () => {
+          socket.send("status");
+          pollServer = setInterval(() => {
+            socket.send("status");
+          }, 3000);
+        });
+
+        socket.on('message', (data) => {
+          if (data.startsWith("clients:")) {
+            if (parseInt(data.split(" ")[1]) > 0) {
+              serverStatus.innerHTML = 'CozmoKart Server Status: <span style="color: brown;">Please wait for a spot to open...</span>';
+            } else if (parseInt(data.split(" ")[1]) == 0) {
+              serverStatus.innerHTML = 'CozmoKart Server Status: <span style="color: green;">Available</span>';
+              clearInterval(pollServer);
+              checkAllGreen();
+            }
+          }
+        });
+
+        socket.on('error', (error) => {
+          console.error('Socket error:', error);
+          serverStatus.innerHTML = 'CozmoKart Server Status: <span style="color: red;">Disconnected</span>';
+          checkAllGreen();
+        });
+
+        socket.on('connect_error', (error) => {
+          console.error('Connection error:', error);
+          serverStatus.innerHTML = 'CozmoKart Server Status: <span style="color: red;">Disconnected</span>';
+          checkAllGreen();
+        });
+      });
+
+      function checkAllGreen() {
+        const cameraGreen = cameraStatus.innerHTML.includes('green');
+        const orientationGreen = orientationStatus.innerHTML.includes('green');
+        const serverGreen = serverStatus.innerHTML.includes('green');
+
+        startGameButton.disabled = !(cameraGreen && orientationGreen && serverGreen);
+      }
+
+      document.getElementById("startGameButton").addEventListener("click", function () {
+        window.location.href = "/debug.html";
+      });
+    </script>
+  </div>
+</body>
+
+</html>
