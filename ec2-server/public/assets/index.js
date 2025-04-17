@@ -87,7 +87,6 @@ function resetJoystick() {
   console.log(`Joystick RESET -> X: 0.0, Y: 0.0`);
   lastLoggedX = 0;
   lastLoggedY = 0;
-
 }
 
 joystick.addEventListener('pointerdown', (e) => {
