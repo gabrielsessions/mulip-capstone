@@ -1,5 +1,0 @@
-[console_scripts]
-broadcast = nodes.broadcast:main
-rosfacedetect = nodes.rosfacedetect:main
-source = nodes.source:main
-
