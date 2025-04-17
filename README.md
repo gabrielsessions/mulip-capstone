@@ -30,7 +30,7 @@ Sponsored By:
 
 ### Setup Steps (Must do every time)
 - Boot up the Raspberry Pi/Server
-  - Clone this repository and `cd new-pi-server` if it has been updated
+  - Clone/pull this repository and `cd ec2-server` if it has been updated
   - Run `pm2 run node index.js` (with process manager, recommended) or `node index.js` (w/o process manager)
 - Connect the overhead camera to the server (or another computer) and run collision detection script
   - `cd collision-detection`
@@ -38,13 +38,12 @@ Sponsored By:
   - Optionally disable camera feed display by commenting out some of the last few lines of the script.
 - Connect the Alienware to the Cozmo Robot
   - (If needed) Clone down the ROS2 Cozmo repo: https://github.com/solosito/cozmo_ros2_nosdk 
-  - Make sure the ethernet cable is plugged in
+  - Make sure an ethernet cable is plugged in
   - Connect to the Cozmo WiFi network
   - Run `. ~/cozmo_ros2_ws/install/setup.bash` inside the `ros-client` directory
   - Connect the ROS master node to the Cozmo: `ros2 run cozmo_ros2_nosdk bringup`
   - Run the websocket client: `python3 client.py`
 - Open up a mobile client
-  - Connect to the `Tufts_Secure` network
-  - QR Code Interface: http://10.243.89.243/qr.html
-  - Simple Controller Interface: http://10.243.89.243/
-  - AR Interface: TBD
+  - Device must have a camera
+  - Primary Interface: https://cozmokart.site
+  - Simple Controller Interface: https://cozmokart.site/debug.html
