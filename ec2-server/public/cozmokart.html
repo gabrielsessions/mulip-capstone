@@ -43,44 +43,43 @@
   <script src="./assets/joystick.js"></script>
 
   <script>
-    const racetrack = document.getElementById('racetrack');
-    racetrack.addEventListener('model-loaded', () => {
-      racetrack.getObject3D('mesh').traverse(node => {
-        if (node.isMesh) {
-          node.material.transparent = true;
-          node.material.opacity = 0.5;
-        }
-      });
-    });
-
-    const markers = ['marker0', 'marker1', 'marker2'].map(id => document.getElementById(id));
-
-    function updateTrack() {
-      const visibleMarkers = markers.filter(m => m.object3D.visible);
-
-      if (visibleMarkers.length === 3) {
-        const center = new THREE.Vector3();
-        visibleMarkers.forEach(m => {
-          const pos = new THREE.Vector3();
-          m.object3D.getWorldPosition(pos);
-          center.add(pos);
+      const racetrack = document.getElementById('racetrack');
+      racetrack.addEventListener('model-loaded', () => {
+        racetrack.getObject3D('mesh').traverse(node => {
+          if (node.isMesh) {
+            node.material.transparent = true;
+            node.material.opacity = 0.5; 
+          }
         });
-        center.divideScalar(3);
-
-        center.y -= 2.5;
-        center.x += 0.5;
-
-        racetrack.setAttribute('position', center);
-        racetrack.setAttribute('visible', true);
-      } else {
-        racetrack.setAttribute('visible', false);
+      });
+    
+      const markers = ['marker0', 'marker1', 'marker2'].map(id => document.getElementById(id));
+    
+      function updateTrack() {
+        const visibleMarkers = markers.filter(m => m.object3D.visible);
+    
+        if (visibleMarkers.length === 3) {
+          const center = new THREE.Vector3();
+          visibleMarkers.forEach(m => {
+            const pos = new THREE.Vector3();
+            m.object3D.getWorldPosition(pos);
+            center.add(pos);
+          });
+          center.divideScalar(3);
+    
+          center.y -= 2.5;
+          center.x += 0.5;
+    
+          racetrack.setAttribute('position', center);
+        }
+    
+        racetrack.setAttribute('visible', visibleMarkers.length > 0);
+    
+        requestAnimationFrame(updateTrack);
       }
-
-      requestAnimationFrame(updateTrack);
-    }
-
-    updateTrack();
-  </script>
+    
+      updateTrack();
+    </script>
 </body>
 
 </html>
