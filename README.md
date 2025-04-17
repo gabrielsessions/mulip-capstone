@@ -1,4 +1,5 @@
 # mulip-capstone-neon-carrot
+CozmoKart: A cart racing game in Augmented Reality (AR) using Cozmo robots.
 
 Team Members:
 - Christopher Bann
