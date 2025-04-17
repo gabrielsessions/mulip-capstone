@@ -3,14 +3,11 @@ const socket = io('https://cozmokart.site', {
 });
 
 function sendAction(msg) {
-  console.log(msg);
   socket.send(msg);
 }
 
-
 const joystick = document.getElementById('joystick');
 const container = document.getElementById('joystick-container');
-const output = document.getElementById('output');
 
 const containerRect = container.getBoundingClientRect();
 const radius = containerRect.width / 2;
@@ -64,8 +61,6 @@ function updateJoystickPosition(clientX, clientY) {
   const normX = +(x / maxDistance).toFixed(2);
   const normY = +(-y / maxDistance).toFixed(2);
 
-  output.textContent = `X: ${normX}, Y: ${normY}`;
-
   // Update line position
   const line = document.getElementById('center-line');
   line.setAttribute('x2', centerX + x);
@@ -76,7 +71,6 @@ function updateJoystickPosition(clientX, clientY) {
 
 function resetJoystick() {
   joystick.style.transform = `translate(-50%, -50%)`;
-  output.textContent = `X: 0, Y: 0`;
 
   const line = document.getElementById('center-line');
   line.setAttribute('x2', centerX);
