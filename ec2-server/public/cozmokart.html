@@ -24,6 +24,9 @@
     <a-marker type="pattern" url="markers/pattern-marker_2.patt" id="marker2">
       <a-entity id="dummy2" position="0 0 0"></a-entity>
     </a-marker>
+    <a-marker type="pattern" url="markers/pattern-marker_3.patt" id="marker3">
+      <a-entity id="dummy3" position="0 0 0"></a-entity>
+    </a-marker>
 
     <a-entity id="racetrack" gltf-model="assets/updatetrack.gltf" scale="1 1 1" rotation="90 0 0" visible="false">
     </a-entity>
@@ -53,19 +56,19 @@
         });
       });
     
-      const markers = ['marker0', 'marker1', 'marker2'].map(id => document.getElementById(id));
+      const markers = ['marker0', 'marker1', 'marker2', 'marker3'].map(id => document.getElementById(id));
     
       function updateTrack() {
         const visibleMarkers = markers.filter(m => m.object3D.visible);
     
-        if (visibleMarkers.length === 3) {
+        if (visibleMarkers.length === 4) {
           const center = new THREE.Vector3();
           visibleMarkers.forEach(m => {
             const pos = new THREE.Vector3();
             m.object3D.getWorldPosition(pos);
             center.add(pos);
           });
-          center.divideScalar(3);
+          center.divideScalar(4);
     
           center.y -= 1.5;
           center.x += 0.5;
