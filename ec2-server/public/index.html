@@ -89,8 +89,7 @@
         <label>
           <input type="checkbox" id="termsCheckbox">
           I accept that my robot control actions and game progress on this website will be logged and used for EE 98
-          data
-          collection purposes. Video/camera data will <span style="font-style: italic;">NOT</span> be collected.
+          data collection purposes. Video/camera data will <span style="font-style: italic;">NOT</span> be collected.
         </label>
         <br><br>
         <label>
@@ -105,6 +104,8 @@
       <h3>System Check</h3>
       <p id="cameraStatus">Camera Access: <span style="color: gray;">Checking...</span></p>
       <p id="orientationStatus">Orientation Controls: <span style="color: gray;">Checking...</span></p>
+      <p id="screenStatus">Screen in Landscape Mode (horizontal): <span style="color: gray;">Checking...</span></p>
+      <p>*Your phone must be oriented horizontally to continue</p>
 
       <h3>Game Status</h3>
       <p id="serverStatus">CozmoKart Server Status: <span style="color: gray;">Checking...</span></p>
@@ -118,6 +119,7 @@
       const enableSensorsCheckbox = document.getElementById('enableSensorsCheckbox');
       const cameraStatus = document.getElementById('cameraStatus');
       const orientationStatus = document.getElementById('orientationStatus');
+      const screenStatus = document.getElementById('screenStatus');
       const serverStatus = document.getElementById('serverStatus');
       const startGameButton = document.getElementById('startGameButton');
 
@@ -130,9 +132,11 @@
       });
 
       nextButton.addEventListener('click', () => {
-        // Check for camera access
+        // Hide welcome content and show system check panel
         document.getElementById('welcome-content').style.display = 'none';
         document.getElementById('systemCheck').style.display = 'block';
+
+        // Check for camera access
         navigator.mediaDevices.getUserMedia({ video: true })
           .then(() => {
             cameraStatus.innerHTML = 'Camera Access: <span style="color: green;">Available</span>';
@@ -151,7 +155,10 @@
         }
         checkAllGreen();
 
-        // Check server status
+        // Check for landscape orientation - call initially and listen for changes
+        checkLandscape();
+
+        // Check server status via Socket.IO
         let pollServer = null;
         const socket = io('/', { transports: ['websocket'] });
 
@@ -187,12 +194,27 @@
         });
       });
 
+      // Function to check if the screen is in landscape
+      function checkLandscape() {
+        if (window.innerWidth > window.innerHeight) {
+          screenStatus.innerHTML = 'Screen in Landscape Mode (horizontal): <span style="color: green;">Yes</span>';
+        } else {
+          screenStatus.innerHTML = 'Screen in Landscape Mode (horizontal): <span style="color: red;">No, please rotate your device.</span>';
+        }
+        checkAllGreen();
+      }
+
+      // Listen to window resize events to update landscape status dynamically
+      window.addEventListener('resize', checkLandscape);
+
+      // Update startGameButton state based on all checks
       function checkAllGreen() {
         const cameraGreen = cameraStatus.innerHTML.includes('green');
         const orientationGreen = orientationStatus.innerHTML.includes('green');
+        const screenGreen = screenStatus.innerHTML.includes('green');
         const serverGreen = serverStatus.innerHTML.includes('green');
 
-        startGameButton.disabled = !(cameraGreen && orientationGreen && serverGreen);
+        startGameButton.disabled = !(cameraGreen && orientationGreen && screenGreen && serverGreen);
       }
 
       document.getElementById("startGameButton").addEventListener("click", function () {
