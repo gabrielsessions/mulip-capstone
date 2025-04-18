@@ -126,6 +126,7 @@ io.on("connection", (socket) => {
       }, 500);
       io.emit("message", "X:0, Y:0")
       console.log("STOP -- COLLISION")
+      saveData("collision-detection", "COLLISION");
     }
     
     else if (data && !blockMsgs) {

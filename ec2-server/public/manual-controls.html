@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Controls</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        button { font-size: 1.5rem; padding: 1rem; }
+        #output p { margin: 0.5rem 0; }
+    </style>
+    
+</head>
+<body>
+    <h1>Socket.IO Test</h1>
+    <button id="sendMessage">Send Message</button>
+    <div id="output"></div>
+    <!-- Include Socket.IO client library -->
+    <script src="./assets/"></script>
+    <script>
+        // Initialize Socket.IO connection - update the URL as needed.
+        const socket = io("http://localhost:8080");
+        const output = document.getElementById("output");
+
+        socket.on('connect', () => {
+            output.innerHTML += '<p>Socket.IO connection established.</p>';
+        });
+
+        socket.on('message', (data) => {
+            output.innerHTML += '<p>Received: ' + data + '</p>';
+        });
+
+        socket.on('connect_error', (error) => {
+            output.innerHTML += '<p>Socket.IO connection error: ' + error + '</p>';
+        });
+
+        socket.on('disconnect', () => {
+            output.innerHTML += '<p>Socket.IO connection closed.</p>';
+        });
+
+        document.getElementById('sendMessage').addEventListener('click', () => {
+            if (socket.connected) {
+                socket.send('Hello from manual controls!');
+                output.innerHTML += '<p>Message Sent: Hello from manual controls!</p>';
+            } else {
+                output.innerHTML += '<p>Socket.IO is not connected.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
